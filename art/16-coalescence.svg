@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#54aeff"/>
+    </marker>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <text x="960" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" font-weight="600" fill="#80ccff">Coalescence Rules</text>
+  <text x="960" y="115" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">§2 · "The style is the same" · Reducing Layouts to Canonical Form</text>
+  
+  <!-- Rule 1: Right Unit -->
+  <g transform="translate(100, 180)">
+    <rect x="0" y="0" width="500" height="220" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="250" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#54aeff">Rule 1: Right Unit</text>
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">(M, 1) : (d, s)</text>
+    <line x1="220" y1="85" x2="300" y2="85" stroke="#54aeff" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="330" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">(M) : (d)</text>
+    <text x="30" y="140" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Drop trailing 1-shaped mode</text>
+    <g transform="translate(30, 160)">
+      <rect x="0" y="0" width="80" height="30" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="85" y="0" width="30" height="30" rx="4" fill="#111417" stroke="#596775" stroke-dasharray="3,2"/>
+      <text x="40" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">M</text>
+      <text x="100" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">1</text>
+      <line x1="140" y1="15" x2="180" y2="15" stroke="#54aeff" stroke-width="2" marker-end="url(#arrow)"/>
+      <rect x="200" y="0" width="80" height="30" rx="4" fill="#111417" stroke="#54aeff"/>
+      <text x="240" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">M</text>
+    </g>
+  </g>
+  
+  <!-- Rule 2: Left Unit -->
+  <g transform="translate(700, 180)">
+    <rect x="0" y="0" width="500" height="220" rx="8" fill="#111417" stroke="#80ccff" stroke-width="2"/>
+    <text x="250" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">Rule 2: Left Unit</text>
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">(1, M) : (d, s)</text>
+    <line x1="220" y1="85" x2="300" y2="85" stroke="#80ccff" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="330" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">(M) : (s)</text>
+    <text x="30" y="140" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Drop leading 1-shaped mode</text>
+    <g transform="translate(30, 160)">
+      <rect x="0" y="0" width="30" height="30" rx="4" fill="#111417" stroke="#596775" stroke-dasharray="3,2"/>
+      <rect x="35" y="0" width="80" height="30" rx="4" fill="#111417" stroke="#80ccff"/>
+      <text x="15" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">1</text>
+      <text x="75" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">M</text>
+      <line x1="140" y1="15" x2="180" y2="15" stroke="#80ccff" stroke-width="2" marker-end="url(#arrow)"/>
+      <rect x="200" y="0" width="80" height="30" rx="4" fill="#111417" stroke="#80ccff"/>
+      <text x="240" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">M</text>
+    </g>
+  </g>
+  
+  <!-- Rule 3: Packed Merge -->
+  <g transform="translate(1300, 180)">
+    <rect x="0" y="0" width="500" height="220" rx="8" fill="#111417" stroke="#b6e3ff" stroke-width="2"/>
+    <text x="250" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#b6e3ff">Rule 3: Packed Merge</text>
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">(M₁, M₂) : (d₁, d₂)</text>
+    <line x1="230" y1="85" x2="290" y2="85" stroke="#b6e3ff" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="310" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">(M₁·M₂) : (d₁)</text>
+    <text x="30" y="130" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">when d₂ = M₁ · d₁</text>
+    <text x="30" y="155" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Merge contiguous packed modes</text>
+    <g transform="translate(30, 170)">
+      <rect x="0" y="0" width="60" height="30" rx="4" fill="#111417" stroke="#b6e3ff"/>
+      <rect x="65" y="0" width="60" height="30" rx="4" fill="#111417" stroke="#b6e3ff"/>
+      <text x="30" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="10" fill="#b6e3ff">M₁</text>
+      <text x="95" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="10" fill="#b6e3ff">M₂</text>
+      <line x1="150" y1="15" x2="190" y2="15" stroke="#b6e3ff" stroke-width="2" marker-end="url(#arrow)"/>
+      <rect x="210" y="0" width="120" height="30" rx="4" fill="#111417" stroke="#b6e3ff"/>
+      <text x="270" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="10" fill="#b6e3ff">M₁·M₂</text>
+    </g>
+  </g>
+  
+  <!-- Example -->
+  <g transform="translate(100, 450)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Example: Coalescing a 4×8 Row-Major Matrix</text>
+    <rect x="0" y="30" width="1700" height="200" rx="8" fill="#111417" stroke="#596775" stroke-width="1"/>
+    
+    <g transform="translate(30, 70)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Initial:</text>
+      <text x="120" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">[(shape=8, stride=1), (shape=4, stride=8)]</text>
+    </g>
+    
+    <g transform="translate(30, 110)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Check Rule 3:</text>
+      <text x="160" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">d₂ = 8 = 8 × 1 = M₁ × d₁ ✓</text>
+    </g>
+    
+    <g transform="translate(30, 150)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Result:</text>
+      <text x="120" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">[(shape=32, stride=1)]</text>
+      <text x="450" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">← contiguous 32-element array</text>
+    </g>
+    
+    <g transform="translate(30, 190)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Canonical form enables vectorized memory access</text>
+    </g>
+  </g>
+  
+  <!-- Theorem 2.2 -->
+  <g transform="translate(100, 720)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Theorem 2.2: Coalescence Preserves Function</text>
+    <rect x="0" y="30" width="1700" height="120" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">∀ x₀ &lt; m₀.shape, ∀ x₁ &lt; m₁.shape:</text>
+    <text x="30" y="115" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">x₀ × m₀.stride + x₁ × m₁.stride = (x₀ + x₁ × m₀.shape) × result.stride</text>
+    <text x="1000" y="95" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">The address computation is preserved</text>
+  </g>
+  
+  <!-- Lean -->
+  <g transform="translate(100, 920)">
+    <rect x="0" y="0" width="1700" height="50" rx="6" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="20" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">theorem</text>
+    <text x="100" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff"> coalesce_preserves_function</text>
+    <text x="360" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff"> (h : tryCoalesce m0 m1 = .merged result) : ∀ x0 x1, addr_before = addr_after</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · 2.2 · 2026</text>
+</svg>

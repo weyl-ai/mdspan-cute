@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <text x="960" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" font-weight="600" fill="#80ccff">Predication Theorems</text>
+  <text x="960" y="115" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">Theorems 4.12, 4.13 · Simplifying Bounds Checks</text>
+  
+  <!-- Context -->
+  <g transform="translate(100, 170)">
+    <rect x="0" y="0" width="1700" height="100" rx="8" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="30" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#80ccff">The Problem:</text>
+    <text x="200" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">After splitting, how do we efficiently check if a thread is in a "hole"?</text>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Naive: Check every index separately. These theorems: Derive one check from another.</text>
+  </g>
+  
+  <!-- Theorem 4.12 -->
+  <g transform="translate(100, 320)">
+    <rect x="0" y="0" width="800" height="340" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#54aeff">Theorem 4.12: Middle Index Bound</text>
+    
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Given:</text>
+    <text x="120" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">i₀ &lt; N₀ and i₂ &lt; N₂ and i₀ = i₁ × N₂ + i₂</text>
+    
+    <text x="30" y="130" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Then:</text>
+    <text x="120" y="130" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">i₁ &lt; ⌈N₀/N₂⌉</text>
+    
+    <!-- Visual -->
+    <g transform="translate(30, 160)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Visual: 3-level split</text>
+      <g transform="translate(0, 20)">
+        <rect x="0" y="0" width="80" height="30" rx="4" fill="#111417" stroke="#54aeff"/>
+        <rect x="85" y="0" width="80" height="30" rx="4" fill="#111417" stroke="#80ccff"/>
+        <rect x="170" y="0" width="80" height="30" rx="4" fill="#111417" stroke="#54aeff"/>
+        <text x="40" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">i₀</text>
+        <text x="125" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">i₁</text>
+        <text x="210" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">i₂</text>
+        <text x="40" y="50" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="10" fill="#596775">outer</text>
+        <text x="125" y="50" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="10" fill="#596775">middle</text>
+        <text x="210" y="50" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="10" fill="#596775">inner</text>
+      </g>
+    </g>
+    
+    <text x="30" y="270" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#80ccff">Implication:</text>
+    <text x="30" y="300" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">If outer and inner are in bounds,</text>
+    <text x="30" y="325" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">middle is automatically in bounds too!</text>
+  </g>
+  
+  <!-- Theorem 4.13 -->
+  <g transform="translate(1000, 320)">
+    <rect x="0" y="0" width="800" height="340" rx="8" fill="#111417" stroke="#80ccff" stroke-width="2"/>
+    <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">Theorem 4.13: Boundary Equivalence</text>
+    
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Given:</text>
+    <text x="120" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">i₀ = i₂ / N₁,  N₂ = N₀ × N₁</text>
+    
+    <text x="30" y="130" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Then:</text>
+    <text x="120" y="130" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#80ccff">(i₀ &lt; N₀) ⟺ (i₂ &lt; N₂)</text>
+    
+    <!-- Visual -->
+    <g transform="translate(30, 160)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Visual: Two views of same data</text>
+      <g transform="translate(0, 20)">
+        <!-- Coarse view -->
+        <rect x="0" y="0" width="100" height="30" rx="4" fill="#111417" stroke="#80ccff"/>
+        <text x="50" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">i₀ &lt; N₀</text>
+        
+        <text x="130" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#b6e3ff">⟺</text>
+        
+        <!-- Fine view -->
+        <rect x="170" y="0" width="100" height="30" rx="4" fill="#111417" stroke="#80ccff"/>
+        <text x="220" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">i₂ &lt; N₂</text>
+      </g>
+    </g>
+    
+    <text x="30" y="270" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">Implication:</text>
+    <text x="30" y="300" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Bounds check at one level gives</text>
+    <text x="30" y="325" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">bounds check at another for free!</text>
+  </g>
+  
+  <!-- Combined power -->
+  <g transform="translate(100, 720)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Combined Power: Minimal Predication</text>
+    <rect x="0" y="30" width="1700" height="120" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">Instead of: if (i₀ &lt; N₀ &amp;&amp; i₁ &lt; N₁ &amp;&amp; i₂ &lt; N₂) { ... }</text>
+    <text x="30" y="115" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">Just:       if (i₂ &lt; N₂) { ... }  ← one check covers all!</text>
+    <text x="900" y="95" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Fewer branches = better GPU utilization</text>
+  </g>
+  
+  <!-- Lean -->
+  <g transform="translate(100, 910)">
+    <rect x="0" y="0" width="800" height="60" rx="6" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="20" y="25" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">theorem</text>
+    <text x="90" y="25" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff"> predication_thm_1</text>
+    <text x="20" y="48" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">(hi0 : i0 &lt; N0) (hi2 : i2 &lt; N2) (h : i0 = i1*N2+i2) : i1 &lt; ceilDiv N0 N2</text>
+  </g>
+  
+  <g transform="translate(1000, 910)">
+    <rect x="0" y="0" width="800" height="60" rx="6" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="20" y="25" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">theorem</text>
+    <text x="90" y="25" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff"> predication_thm_2</text>
+    <text x="20" y="48" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">(hN1 : N1 &gt; 0) : (i2 / N1 &lt; N0) ↔ (i2 &lt; N0 * N1)</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · 4.12-4.13 · 2026</text>
+</svg>

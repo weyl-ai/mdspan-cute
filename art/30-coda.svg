@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+    <linearGradient id="fadeIn" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#111417"/>
+      <stop offset="50%" stop-color="#54aeff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#111417"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#0a0c0e"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <!-- Decorative lines -->
+  <line x1="0" y1="100" x2="1920" y2="100" stroke="url(#fadeIn)" stroke-width="1"/>
+  <line x1="0" y1="980" x2="1920" y2="980" stroke="url(#fadeIn)" stroke-width="1"/>
+  
+  <!-- Title -->
+  <text x="960" y="180" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="72" font-weight="600" fill="#80ccff" filter="url(#glow)">CODA</text>
+  
+  <!-- The matrix quote -->
+  <g transform="translate(200, 280)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" font-style="italic" fill="#596775">"I'm not Wintermute now."</text>
+    <text x="0" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" font-style="italic" fill="#596775">"So what are you."</text>
+    <text x="0" y="80" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" font-style="italic" fill="#80ccff">"I'm the matrix, Case."</text>
+    <text x="0" y="120" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" font-style="italic" fill="#596775">"Where's that get you?"</text>
+    <text x="0" y="160" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" font-style="italic" fill="#596775">"Nowhere. Everywhere. I'm the sum total of the works,</text>
+    <text x="0" y="185" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" font-style="italic" fill="#596775">the whole show."</text>
+  </g>
+  
+  <!-- The mapping -->
+  <g transform="translate(1000, 280)">
+    <rect x="0" y="0" width="700" height="200" rx="8" fill="#111417" stroke="#54aeff" stroke-width="1"/>
+    <text x="350" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#54aeff">The Translation</text>
+    
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Wintermute</text>
+    <text x="250" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#80ccff">→</text>
+    <text x="300" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">nvfuser documentation</text>
+    
+    <text x="30" y="125" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">The matrix</text>
+    <text x="250" y="125" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#80ccff">→</text>
+    <text x="300" y="125" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">the type system</text>
+    
+    <text x="30" y="160" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">The whole show</text>
+    <text x="250" y="160" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#80ccff">→</text>
+    <text x="300" y="160" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">26 proven theorems</text>
+  </g>
+  
+  <!-- The statement -->
+  <g transform="translate(100, 550)">
+    <text x="860" y="0" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="32" fill="#80ccff">I'm the sum total of the works, the whole show.</text>
+  </g>
+  
+  <!-- The proof -->
+  <g transform="translate(200, 640)">
+    <rect x="0" y="0" width="1500" height="200" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    
+    <text x="750" y="50" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#54aeff">NVIDIA gave us the theorems.</text>
+    <text x="750" y="100" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">We gave them types.</text>
+    
+    <g transform="translate(100, 130)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">21 theorems from nvfuser</text>
+      <text x="350" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">5 extensions</text>
+      <text x="600" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">~400 lines of Lean</text>
+      <text x="950" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">0 sorry</text>
+    </g>
+  </g>
+  
+  <!-- Centauri reference -->
+  <g transform="translate(200, 890)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">"There's others. I found one already. Series of transmissions recorded over</text>
+    <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">a period of eight years, in the nineteen-seventies. 'Til there was me, natch,</text>
+    <text x="0" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">there was nobody to know, nobody to answer."</text>
+    <text x="0" y="70" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">"From where?"</text>
+    <text x="0" y="95" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#80ccff">"Centauri system."</text>
+  </g>
+  
+  <!-- The end -->
+  <text x="1700" y="950" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">And then the screen was blank.</text>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · coda · 2026</text>
+</svg>

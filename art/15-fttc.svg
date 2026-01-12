@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <linearGradient id="dangerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#54aeff" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#80ccff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#54aeff" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <text x="960" y="60" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="44" font-weight="600" fill="#80ccff">The Fundamental Theorem of TMA Correctness</text>
+  <text x="960" y="100" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="22" fill="#596775">Theorem 3.6 · "The shotgun wired to the forehead" · tma-modeling-in-depth.md Thm 6</text>
+  
+  <!-- The theorem -->
+  <g transform="translate(260, 140)">
+    <rect x="0" y="0" width="1400" height="120" rx="8" fill="#111417" stroke="#54aeff" stroke-width="3"/>
+    <text x="700" y="50" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#b6e3ff">Strong correctness is UNACHIEVABLE iff:</text>
+    <text x="700" y="95" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="36" font-weight="600" fill="#54aeff">e &lt; B &lt; S   AND   e ∤ B</text>
+  </g>
+  
+  <!-- Variable definitions -->
+  <g transform="translate(100, 300)">
+    <rect x="0" y="0" width="500" height="180" rx="8" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="250" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="22" fill="#80ccff">Variables</text>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">e</text>
+    <text x="60" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">= element_stride</text>
+    <text x="280" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">memory distance between elements</text>
+    <text x="30" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">B</text>
+    <text x="60" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">= box_size</text>
+    <text x="280" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">TMA copy granularity</text>
+    <text x="30" y="145" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">S</text>
+    <text x="60" y="145" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">= tensor_size</text>
+    <text x="280" y="145" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">total tensor dimension</text>
+  </g>
+  
+  <!-- Escape hatches -->
+  <g transform="translate(700, 300)">
+    <rect x="0" y="0" width="600" height="180" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="300" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="22" fill="#54aeff">Escape Hatches (achievable if)</text>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">e | B</text>
+    <text x="150" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">divisibility saves you</text>
+    <text x="30" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">B ≥ S</text>
+    <text x="150" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">box covers whole tensor</text>
+    <text x="30" y="145" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">e ≥ B</text>
+    <text x="150" y="145" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">element ≥ box (degenerate)</text>
+  </g>
+  
+  <!-- Figure 5 example -->
+  <g transform="translate(1400, 300)">
+    <rect x="0" y="0" width="400" height="180" rx="8" fill="#111417" stroke="#596775" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="200" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="22" fill="#596775">Figure 5: Violation</text>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">e = 3, B = 5, S = 8</text>
+    <text x="30" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">3 &lt; 5 &lt; 8 ✓</text>
+    <text x="30" y="145" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">3 ∤ 5 ✓</text>
+    <text x="200" y="170" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#80ccff">→ UNACHIEVABLE</text>
+  </g>
+  
+  <!-- Visual explanation -->
+  <g transform="translate(100, 520)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Why e ∤ B Causes Problems</text>
+    <rect x="0" y="30" width="1700" height="220" rx="8" fill="#111417" stroke="url(#dangerGrad)" stroke-width="2"/>
+    
+    <!-- Good case -->
+    <g transform="translate(50, 60)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">e | B (e=2, B=6): TMA box aligns with elements</text>
+      <g transform="translate(0, 20)">
+        <rect x="0" y="0" width="50" height="30" rx="2" fill="#111417" stroke="#54aeff"/>
+        <rect x="55" y="0" width="50" height="30" rx="2" fill="#111417" stroke="#54aeff"/>
+        <rect x="110" y="0" width="50" height="30" rx="2" fill="#111417" stroke="#54aeff"/>
+        <rect x="165" y="0" width="50" height="30" rx="2" fill="#111417" stroke="#54aeff"/>
+        <rect x="220" y="0" width="50" height="30" rx="2" fill="#111417" stroke="#54aeff"/>
+        <rect x="275" y="0" width="50" height="30" rx="2" fill="#111417" stroke="#54aeff"/>
+        <!-- TMA box outline -->
+        <rect x="-5" y="-5" width="175" height="40" rx="4" fill="none" stroke="#54aeff" stroke-width="2"/>
+        <rect x="160" y="-5" width="175" height="40" rx="4" fill="none" stroke="#54aeff" stroke-width="2"/>
+        <text x="85" y="55" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">box 0</text>
+        <text x="248" y="55" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">box 1</text>
+      </g>
+      <text x="400" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">✓ Clean boundaries</text>
+    </g>
+    
+    <!-- Bad case -->
+    <g transform="translate(50, 150)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">e ∤ B (e=3, B=5): TMA box MISALIGNS with elements</text>
+      <g transform="translate(0, 20)">
+        <rect x="0" y="0" width="70" height="30" rx="2" fill="#111417" stroke="#80ccff"/>
+        <rect x="75" y="0" width="70" height="30" rx="2" fill="#111417" stroke="#80ccff"/>
+        <rect x="150" y="0" width="70" height="30" rx="2" fill="#111417" stroke="#80ccff"/>
+        <rect x="225" y="0" width="70" height="30" rx="2" fill="#111417" stroke="#80ccff"/>
+        <rect x="300" y="0" width="70" height="30" rx="2" fill="#111417" stroke="#80ccff"/>
+        <!-- TMA box outline - misaligned! -->
+        <rect x="-5" y="-5" width="148" height="40" rx="4" fill="none" stroke="#596775" stroke-width="2" stroke-dasharray="5,3"/>
+        <rect x="143" y="-5" width="148" height="40" rx="4" fill="none" stroke="#596775" stroke-width="2" stroke-dasharray="5,3"/>
+        <!-- Partial element markers -->
+        <line x1="143" y1="0" x2="143" y2="30" stroke="#80ccff" stroke-width="2"/>
+        <text x="130" y="50" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="10" fill="#80ccff">split!</text>
+      </g>
+      <text x="400" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">✗ Element split across boxes → garbage</text>
+    </g>
+  </g>
+  
+  <!-- Type system implication -->
+  <g transform="translate(100, 800)">
+    <rect x="0" y="0" width="1700" height="100" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="30" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#54aeff">Type System Implication:</text>
+    <text x="350" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">FTTCConfig requires proofs of e_pos, b_pos, s_pos</text>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">You cannot construct an invalid TMA schedule because the proof obligations cannot be satisfied.</text>
+  </g>
+  
+  <!-- Lean -->
+  <g transform="translate(100, 950)">
+    <rect x="0" y="0" width="1700" height="50" rx="6" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="20" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">theorem</text>
+    <text x="100" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff"> fttc</text>
+    <text x="150" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff"> (c : FTTCConfig) : c.violated ↔ ¬c.achievable</text>
+    <text x="600" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775"> -- Turing'll wipe it</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · fttc · 2026</text>
+</svg>

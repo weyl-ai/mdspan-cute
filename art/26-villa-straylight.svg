@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <linearGradient id="voidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111417"/>
+      <stop offset="50%" stop-color="#0a0c0e"/>
+      <stop offset="100%" stop-color="#111417"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="url(#voidGrad)"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <text x="960" y="80" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="56" font-weight="600" fill="#80ccff" filter="url(#glow)">VILLA STRAYLIGHT</text>
+  
+  <!-- Quote -->
+  <g transform="translate(200, 140)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">"The Villa Straylight is a body grown in upon itself, a Gothic folly.</text>
+    <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">Each space in Straylight is in some way secret..."</text>
+  </g>
+  
+  <!-- Architecture visualization - nested boxes representing the CUDA stack -->
+  <g transform="translate(100, 220)">
+    <!-- Outermost: GPU Hardware -->
+    <rect x="0" y="0" width="800" height="600" rx="8" fill="none" stroke="#596775" stroke-width="1" stroke-dasharray="10,5"/>
+    <text x="20" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">GPU Hardware</text>
+    
+    <!-- CUDA Runtime -->
+    <rect x="30" y="50" width="740" height="520" rx="8" fill="none" stroke="#54aeff" stroke-width="1" opacity="0.6"/>
+    <text x="50" y="80" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">CUDA Runtime</text>
+    
+    <!-- CUTLASS -->
+    <rect x="60" y="100" width="680" height="440" rx="8" fill="none" stroke="#80ccff" stroke-width="1" opacity="0.7"/>
+    <text x="80" y="130" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">CUTLASS</text>
+    
+    <!-- CuTe -->
+    <rect x="90" y="150" width="620" height="360" rx="8" fill="none" stroke="#b6e3ff" stroke-width="1" opacity="0.8"/>
+    <text x="110" y="180" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff">CuTe Layout Algebra</text>
+    
+    <!-- TMA -->
+    <rect x="120" y="200" width="560" height="280" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="140" y="230" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">TMA (Tensor Memory Accelerator)</text>
+    
+    <!-- The theorems inside -->
+    <g transform="translate(140, 250)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">integer-division.md</text>
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">divisibility-of-split.md</text>
+      <text x="0" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">tma-modeling-in-depth.md</text>
+      <text x="0" y="60" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">iterdomain.md</text>
+      
+      <text x="220" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">← the true names</text>
+      
+      <rect x="0" y="80" width="500" height="140" rx="4" fill="#0a0c0e" stroke="#596775" stroke-width="1"/>
+      <text x="20" y="105" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="11" fill="#54aeff">structure Mode where</text>
+      <text x="20" y="125" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="11" fill="#b6e3ff">  shape : Nat</text>
+      <text x="20" y="145" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="11" fill="#b6e3ff">  stride : Nat</text>
+      <text x="20" y="165" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="11" fill="#596775">  shape_pos : shape &gt; 0  -- PROOF</text>
+      <text x="20" y="200" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="10" fill="#54aeff">← encoded as types</text>
+    </g>
+  </g>
+  
+  <!-- Right side: The mapping -->
+  <g transform="translate(1000, 220)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">The Mapping</text>
+    
+    <g transform="translate(0, 40)">
+      <rect x="0" y="0" width="350" height="40" rx="4" fill="#111417" stroke="#596775" stroke-width="1"/>
+      <text x="15" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Villa Straylight</text>
+      <text x="220" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">CUDA Stack</text>
+    </g>
+    
+    <g transform="translate(0, 90)">
+      <rect x="0" y="0" width="350" height="40" rx="4" fill="#111417" stroke="#596775" stroke-width="1"/>
+      <text x="15" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Gothic folly</text>
+      <text x="220" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">Complexity</text>
+    </g>
+    
+    <g transform="translate(0, 140)">
+      <rect x="0" y="0" width="350" height="40" rx="4" fill="#111417" stroke="#596775" stroke-width="1"/>
+      <text x="15" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Secret spaces</text>
+      <text x="220" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">Undocumented</text>
+    </g>
+    
+    <g transform="translate(0, 190)">
+      <rect x="0" y="0" width="350" height="40" rx="4" fill="#111417" stroke="#596775" stroke-width="1"/>
+      <text x="15" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">True names</text>
+      <text x="220" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">nvfuser docs</text>
+    </g>
+    
+    <g transform="translate(0, 240)">
+      <rect x="0" y="0" width="350" height="40" rx="4" fill="#111417" stroke="#596775" stroke-width="1"/>
+      <text x="15" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Wintermute</text>
+      <text x="220" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">Lean compiler</text>
+    </g>
+    
+    <g transform="translate(0, 290)">
+      <rect x="0" y="0" width="350" height="40" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <text x="15" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">Cyberspace</text>
+      <text x="220" y="26" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">Type system</text>
+    </g>
+    
+    <!-- The promise -->
+    <g transform="translate(0, 380)">
+      <rect x="0" y="0" width="800" height="200" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">The Promise</text>
+      <text x="20" y="80" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">"Every AI ever built has an electromagnetic</text>
+      <text x="20" y="100" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">shotgun wired to its forehead."</text>
+      <text x="20" y="140" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">The type system is the shotgun.</text>
+      <text x="20" y="165" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">Invalid schedules cannot be constructed.</text>
+      <text x="20" y="190" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff">Turing'll wipe it.</text>
+    </g>
+  </g>
+  
+  <!-- Bottom: The revelation -->
+  <g transform="translate(100, 880)">
+    <rect x="0" y="0" width="1700" height="100" rx="8" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="30" y="35" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#80ccff">NVIDIA documented the true names.</text>
+    <text x="30" y="60" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Not in marketing materials. In doc/math/*.md and doc/reading/*.md.</text>
+    <text x="30" y="85" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">They proved these by hand. We encoded them as types.</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · straylight · 2026</text>
+</svg>

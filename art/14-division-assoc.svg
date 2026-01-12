@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#54aeff" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#b6e3ff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#54aeff" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <text x="960" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" font-weight="600" fill="#80ccff">Division Associativity</text>
+  <text x="960" y="115" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">Theorem 4.6 · nvfuser integer-division.md §2.11</text>
+  
+  <!-- Main theorem -->
+  <g transform="translate(360, 170)">
+    <rect x="0" y="0" width="1200" height="100" rx="8" fill="#111417" stroke="url(#bridgeGrad)" stroke-width="2"/>
+    <text x="600" y="60" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="42" font-weight="600" fill="#b6e3ff">a / (b × c) = (a / b) / c</text>
+  </g>
+  
+  <!-- Visual example -->
+  <g transform="translate(100, 320)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Visual: 100 items, b=4, c=5</text>
+    
+    <!-- Original array -->
+    <g transform="translate(0, 50)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Original: 100 elements</text>
+      <rect x="0" y="30" width="800" height="40" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <text x="400" y="57" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">[0, 1, 2, 3, ... 99]</text>
+    </g>
+    
+    <!-- Direct division -->
+    <g transform="translate(0, 150)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">100 / (4 × 5) = 100 / 20 = 5</text>
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="155" height="40" rx="4" fill="#111417" stroke="#80ccff"/>
+        <rect x="160" y="0" width="155" height="40" rx="4" fill="#111417" stroke="#80ccff"/>
+        <rect x="320" y="0" width="155" height="40" rx="4" fill="#111417" stroke="#80ccff"/>
+        <rect x="480" y="0" width="155" height="40" rx="4" fill="#111417" stroke="#80ccff"/>
+        <rect x="640" y="0" width="155" height="40" rx="4" fill="#111417" stroke="#80ccff"/>
+        <text x="77" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">20</text>
+        <text x="237" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">20</text>
+        <text x="397" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">20</text>
+        <text x="557" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">20</text>
+        <text x="717" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">20</text>
+      </g>
+      <text x="400" y="95" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">5 groups of 20</text>
+    </g>
+  </g>
+  
+  <!-- Two-step division -->
+  <g transform="translate(1000, 320)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Same result via two steps</text>
+    
+    <!-- Step 1 -->
+    <g transform="translate(0, 50)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Step 1: 100 / 4 = 25</text>
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="180" height="35" rx="4" fill="#111417" stroke="#54aeff"/>
+        <rect x="185" y="0" width="180" height="35" rx="4" fill="#111417" stroke="#54aeff"/>
+        <rect x="370" y="0" width="180" height="35" rx="4" fill="#111417" stroke="#54aeff"/>
+        <rect x="555" y="0" width="180" height="35" rx="4" fill="#111417" stroke="#54aeff"/>
+        <text x="280" y="60" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">4 groups of 25</text>
+      </g>
+    </g>
+    
+    <!-- Step 2 -->
+    <g transform="translate(0, 150)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Step 2: 25 / 5 = 5</text>
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="145" height="40" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="2"/>
+        <rect x="150" y="0" width="145" height="40" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="2"/>
+        <rect x="300" y="0" width="145" height="40" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="2"/>
+        <rect x="450" y="0" width="145" height="40" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="2"/>
+        <rect x="600" y="0" width="145" height="40" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="2"/>
+        <text x="72" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">5</text>
+        <text x="222" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">5</text>
+        <text x="372" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">5</text>
+        <text x="522" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">5</text>
+        <text x="672" y="27" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">5</text>
+        <text x="370" y="65" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">= 5 ✓</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Equals sign -->
+  <text x="920" y="450" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="60" fill="#b6e3ff">=</text>
+  
+  <!-- Why it matters -->
+  <g transform="translate(100, 600)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Why This Matters for Split-Split</text>
+    <rect x="0" y="30" width="1700" height="150" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">When splitting an iteration domain twice:</text>
+    <text x="30" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Split by n, then by m: outer index = (i / n) / m</text>
+    <text x="30" y="145" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Split by m×n directly: outer index = i / (m × n)</text>
+    <text x="800" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#54aeff">←</text>
+    <text x="850" y="115" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">These are EQUAL by Thm 4.6!</text>
+  </g>
+  
+  <!-- Note about NOT working -->
+  <g transform="translate(100, 820)">
+    <rect x="0" y="0" width="800" height="100" rx="8" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="30" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">⚠ Does NOT generalize to:</text>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">a / b / c ≠ a / (c × b) in general</text>
+    <text x="450" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">(order matters)</text>
+  </g>
+  
+  <!-- Lean -->
+  <g transform="translate(1000, 820)">
+    <rect x="0" y="0" width="800" height="100" rx="8" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="20" y="35" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">theorem</text>
+    <text x="100" y="35" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff"> thm_2_11</text>
+    <text x="200" y="35" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff"> (a b c : ℕ) (hb : b &gt; 0) (hc : c &gt; 0) :</text>
+    <text x="40" y="65" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff">a / (b * c) = a / b / c</text>
+    <text x="40" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">:= Nat.div_div_eq_div_mul a b c</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · 4.6 · 2026</text>
+</svg>

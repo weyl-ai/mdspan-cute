@@ -1,0 +1,26 @@
+# Nix
+result
+result-*
+.direnv/
+
+# Build
+build/
+cmake-build-*/
+*.o
+*.a
+*.so
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*~
+.cache/
+compile_commands.json
+
+# OS
+.DS_Store
+.nixd.json
+.nil.toml
+.direnv
+.devshell

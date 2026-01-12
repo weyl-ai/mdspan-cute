@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#54aeff" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#b6e3ff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#54aeff" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <text x="960" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" font-weight="600" fill="#80ccff">Split-Split Equivalence</text>
+  <text x="960" y="115" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">Theorem 4.11 · iterdomain.md Theorem 2.1</text>
+  
+  <g transform="translate(100, 160)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">Two ways to split by m×n:</text>
+  </g>
+  
+  <g transform="translate(100, 200)">
+    <rect x="0" y="0" width="800" height="300" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="400" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="22" fill="#54aeff">Path 1: Split by n, then by m</text>
+    <g transform="translate(50, 60)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Original [0..24)</text>
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="700" height="30" rx="4" fill="#111417" stroke="#80ccff" stroke-width="1"/>
+        <text x="350" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">i ∈ [0, 24)</text>
+      </g>
+    </g>
+    <g transform="translate(50, 130)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">After split(n=4): outer₁ = i/4, inner₁ = i%4</text>
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="112" height="30" rx="4" fill="#111417" stroke="#54aeff" stroke-width="1"/>
+        <rect x="117" y="0" width="112" height="30" rx="4" fill="#111417" stroke="#54aeff" stroke-width="1"/>
+        <rect x="234" y="0" width="112" height="30" rx="4" fill="#111417" stroke="#54aeff" stroke-width="1"/>
+        <rect x="351" y="0" width="112" height="30" rx="4" fill="#111417" stroke="#54aeff" stroke-width="1"/>
+        <rect x="468" y="0" width="112" height="30" rx="4" fill="#111417" stroke="#54aeff" stroke-width="1"/>
+        <rect x="585" y="0" width="112" height="30" rx="4" fill="#111417" stroke="#54aeff" stroke-width="1"/>
+        <text x="56" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">0</text>
+        <text x="173" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">1</text>
+        <text x="290" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">2</text>
+        <text x="407" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">3</text>
+        <text x="524" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">4</text>
+        <text x="641" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">5</text>
+      </g>
+      <text x="350" y="75" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">6 groups of 4</text>
+    </g>
+    <g transform="translate(50, 220)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">After split(m=2): outer₂ = outer₁/2</text>
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="229" height="30" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="1"/>
+        <rect x="234" y="0" width="229" height="30" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="1"/>
+        <rect x="468" y="0" width="229" height="30" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="1"/>
+        <text x="115" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">0</text>
+        <text x="349" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">1</text>
+        <text x="583" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">2</text>
+      </g>
+    </g>
+  </g>
+  
+  <g transform="translate(1000, 200)">
+    <rect x="0" y="0" width="800" height="300" rx="8" fill="#111417" stroke="#80ccff" stroke-width="2"/>
+    <text x="400" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="22" fill="#80ccff">Path 2: Split by m×n directly</text>
+    <g transform="translate(50, 60)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Original [0..24)</text>
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="700" height="30" rx="4" fill="#111417" stroke="#80ccff" stroke-width="1"/>
+        <text x="350" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">i ∈ [0, 24)</text>
+      </g>
+    </g>
+    <g transform="translate(50, 130)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">After split(m×n=8): outer = i/8, inner = i%8</text>
+      <g transform="translate(0, 30)">
+        <rect x="0" y="0" width="229" height="30" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="1"/>
+        <rect x="234" y="0" width="229" height="30" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="1"/>
+        <rect x="468" y="0" width="229" height="30" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="1"/>
+        <text x="115" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">0</text>
+        <text x="349" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">1</text>
+        <text x="583" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">2</text>
+      </g>
+      <text x="350" y="75" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">3 groups of 8</text>
+    </g>
+    <g transform="translate(50, 220)">
+      <text x="0" y="20" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Decompose inner: inner/n, inner%n</text>
+      <text x="350" y="60" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">Same structure!</text>
+    </g>
+  </g>
+  
+  <text x="910" y="360" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="60" fill="#b6e3ff">=</text>
+  
+  <g transform="translate(100, 540)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Four Equivalent Statements:</text>
+    <rect x="0" y="30" width="1700" height="200" rx="8" fill="#111417" stroke="url(#bridgeGrad)" stroke-width="2"/>
+    <text x="50" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#596775">1. Extent:</text>
+    <text x="250" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">⌈⌈i/n⌉/m⌉ = ⌈i/(m×n)⌉</text>
+    <text x="700" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">← ceiling associativity</text>
+    <text x="50" y="115" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#596775">2. Outer:</text>
+    <text x="250" y="115" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">i/n/m = i/(m×n)</text>
+    <text x="700" y="115" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">← division associativity</text>
+    <text x="50" y="155" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#596775">3. Inner-outer:</text>
+    <text x="250" y="155" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">(i/n) % m = (i % (m×n)) / n</text>
+    <text x="700" y="155" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">← Theorem 4.8</text>
+    <text x="50" y="195" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#596775">4. Inner-inner:</text>
+    <text x="250" y="195" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">i % n = (i % (m×n)) % n</text>
+    <text x="700" y="195" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">← Theorem 4.3</text>
+    <g transform="translate(1000, 40)">
+      <rect x="0" y="0" width="650" height="150" rx="8" fill="#111417" stroke="#54aeff" stroke-width="1"/>
+      <text x="325" y="30" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">GPU Implication</text>
+      <text x="30" y="60" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff">You can split a 24-element array:</text>
+      <text x="30" y="85" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">• By 4, then by 2 (two kernel launches)</text>
+      <text x="30" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">• By 8 directly (one kernel launch)</text>
+      <text x="30" y="140" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">Same indices! Compiler can optimize.</text>
+    </g>
+  </g>
+  
+  <g transform="translate(100, 820)">
+    <rect x="0" y="0" width="1700" height="70" rx="6" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="20" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">theorem</text>
+    <text x="100" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff"> split_split_equivalence</text>
+    <text x="320" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff"> (m n i : ℕ) (hm : m &gt; 0) (hn : n &gt; 0) :</text>
+    <text x="20" y="55" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">    ceilDiv (ceilDiv i n) m = ceilDiv i (m*n) ∧ i/n/m = i/(m*n) ∧ i/n%m = i%(m*n)/n ∧ i%n = i%(m*n)%n</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · 4.11 · 2026</text>
+</svg>

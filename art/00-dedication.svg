@@ -1,0 +1,246 @@
+<!-- art/polyhedral-wizards.svg -->
+<!-- "The Polyhedral Wizards at Play" -->
+<!-- A dedication to those who gave us the algebra of tensors -->
+<!-- Rendered with ono-sendai-razorgirl palette @ 2560x1440 -->
+<svg width="2560" height="1440" viewBox="0 0 2560 1440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @font-face {
+        font-family: 'Berkeley Mono';
+        src: local('Berkeley Mono Medium'), local('BerkeleyMono-Medium');
+      }
+      .mono { 
+        font-family: 'Berkeley Mono', 'SF Mono', 'Consolas', monospace; 
+        font-feature-settings: 'liga' 1, 'calt' 1;
+      }
+    </style>
+    
+    <!-- Gradient for the central bridge visualization -->
+    <linearGradient id="bridge-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#54aeff" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#b6e3ff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#54aeff" stop-opacity="0.8"/>
+    </linearGradient>
+    
+    <!-- Subtle grid pattern for polyhedral space -->
+    <pattern id="polyhedra-grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background: razorgirl base00 #111417 -->
+  <rect width="2560" height="1440" fill="#111417"/>
+  
+  <!-- Subtle polyhedral grid background -->
+  <rect width="2560" height="1440" fill="url(#polyhedra-grid)" opacity="0.4"/>
+  
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- THE TITLE - Top Center -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <g transform="translate(1280, 120)">
+    <text x="0" y="0" class="mono" font-size="56" font-weight="600" text-anchor="middle">
+      <tspan fill="#80ccff">The Polyhedral Wizards</tspan>
+      <tspan fill="#54aeff" dx="24">at Play</tspan>
+    </text>
+    <text x="0" y="48" class="mono" fill="#596775" font-size="20" font-weight="400" text-anchor="middle">
+      <tspan>mdspan-cute: where two decades of work become one line of code</tspan>
+    </text>
+  </g>
+  
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- THE POLYHEDRAL FOUNDATIONS - Left Column -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <g transform="translate(160, 280)" opacity="0.9">
+    <text x="0" y="0" class="mono" fill="#80ccff" font-size="24" font-weight="600">
+      <tspan>// POLYHEDRAL FOUNDATIONS</tspan>
+    </text>
+    <text x="0" y="40" class="mono" fill="#596775" font-size="18" font-weight="400">
+      <tspan x="0" dy="0">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</tspan>
+    </text>
+    
+    <!-- The names -->
+    <text x="0" y="100" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Paul Feautrier</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">parametric integer programming</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">the mathematics of loop nests</tspan>
+    </text>
+    
+    <text x="0" y="200" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Cédric Bastoul</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">CLooG, code generation</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">polyhedra → imperative code</tspan>
+    </text>
+    
+    <text x="0" y="300" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Albert Cohen</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">INRIA, Tensor Comprehensions</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">polyhedral meets deep learning</tspan>
+    </text>
+    
+    <text x="0" y="400" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Sven Verdoolaege</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">isl: integer set library</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">the engine beneath it all</tspan>
+    </text>
+    
+    <!-- The algebra -->
+    <text x="0" y="520" class="mono" fill="#596775" font-size="18" font-weight="400">
+      <tspan x="0" dy="0">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</tspan>
+    </text>
+    <text x="0" y="560" class="mono" fill="#54aeff" font-size="18" font-weight="500">
+      <tspan x="0" dy="0">{ (i,j,k) ∈ Z³ | 0 ≤ i &lt; M, 0 ≤ j &lt; N }</tspan>
+      <tspan x="0" dy="28" fill="#596775">the shape of computation itself</tspan>
+    </text>
+  </g>
+  
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- THE CUTLASS ARCHITECTS - Right Column -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <g transform="translate(1840, 280)" opacity="0.9">
+    <text x="0" y="0" class="mono" fill="#80ccff" font-size="24" font-weight="600">
+      <tspan>// CUTLASS CUTE</tspan>
+    </text>
+    <text x="0" y="40" class="mono" fill="#596775" font-size="18" font-weight="400">
+      <tspan x="0" dy="0">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</tspan>
+    </text>
+    
+    <!-- The names -->
+    <text x="0" y="100" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Andrew Kerr</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">CUTLASS architect</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">cute layout algebra</tspan>
+    </text>
+    
+    <text x="0" y="200" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Duane Merrill</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">CUB, device primitives</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">the patterns beneath CUDA</tspan>
+    </text>
+    
+    <text x="0" y="300" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Haicheng Wu</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">cute tensor abstractions</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">swizzle composition</tspan>
+    </text>
+    
+    <text x="0" y="400" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">NVIDIA CUTLASS Team</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">Pradeep Ramani, Vijay Thakkar</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">years of kernel wisdom</tspan>
+    </text>
+    
+    <!-- The algebra -->
+    <text x="0" y="520" class="mono" fill="#596775" font-size="18" font-weight="400">
+      <tspan x="0" dy="0">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</tspan>
+    </text>
+    <text x="0" y="560" class="mono" fill="#54aeff" font-size="18" font-weight="500">
+      <tspan x="0" dy="0">Layout = Shape ∘ Stride ∘ Swizzle</tspan>
+      <tspan x="0" dy="28" fill="#596775">coordinates → memory, composed</tspan>
+    </text>
+  </g>
+  
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- THE MDSPAN STANDARDIZERS - Center Column -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <g transform="translate(1000, 280)" opacity="0.9">
+    <text x="0" y="0" class="mono" fill="#80ccff" font-size="24" font-weight="600">
+      <tspan>// C++23 MDSPAN</tspan>
+    </text>
+    <text x="0" y="40" class="mono" fill="#596775" font-size="18" font-weight="400">
+      <tspan x="0" dy="0">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</tspan>
+    </text>
+    
+    <!-- The names -->
+    <text x="0" y="100" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Bryce Adelstein Lelbach</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">NVIDIA, ISO C++ Committee</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">mdspan into the standard</tspan>
+    </text>
+    
+    <text x="0" y="200" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">Christian Trott</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">Sandia, Kokkos lead</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">performance portability</tspan>
+    </text>
+    
+    <text x="0" y="300" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">H. Carter Edwards</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">Kokkos::View origins</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">multidimensional from the start</tspan>
+    </text>
+    
+    <text x="0" y="400" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
+      <tspan x="0" dy="0">The Kokkos Team</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">Sandia, ORNL, LBNL</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">a decade of iteration</tspan>
+    </text>
+    
+    <!-- The syntax -->
+    <text x="0" y="520" class="mono" fill="#596775" font-size="18" font-weight="400">
+      <tspan x="0" dy="0">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</tspan>
+    </text>
+    <text x="0" y="560" class="mono" fill="#54aeff" font-size="18" font-weight="500">
+      <tspan x="0" dy="0">tensor[i, j, k]</tspan>
+      <tspan x="0" dy="28" fill="#596775">C++23 multidimensional subscript</tspan>
+    </text>
+  </g>
+  
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- THE BRIDGE - Center, connecting everything -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <g transform="translate(1280, 920)">
+    <!-- The connection lines -->
+    <line x1="-800" y1="-60" x2="-200" y2="0" stroke="#596775" stroke-width="1" opacity="0.4"/>
+    <line x1="800" y1="-60" x2="200" y2="0" stroke="#596775" stroke-width="1" opacity="0.4"/>
+    <line x1="0" y1="-100" x2="0" y2="-20" stroke="#596775" stroke-width="1" opacity="0.4"/>
+    
+    <!-- The bridge box -->
+    <rect x="-280" y="-20" width="560" height="100" rx="8" fill="#111417" stroke="url(#bridge-gradient)" stroke-width="2"/>
+    
+    <text x="0" y="20" class="mono" font-size="28" font-weight="600" text-anchor="middle">
+      <tspan fill="#b6e3ff">mdspan_cute::layout_cute</tspan>
+    </text>
+    <text x="0" y="56" class="mono" fill="#596775" font-size="16" font-weight="400" text-anchor="middle">
+      <tspan>the zero-overhead bridge</tspan>
+    </text>
+  </g>
+  
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- THE CODE - What it all becomes -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <g transform="translate(1280, 1100)" opacity="0.85">
+    <text x="0" y="0" class="mono" font-size="32" font-weight="500" text-anchor="middle">
+      <tspan fill="#596775">// Two decades of work, one line of code</tspan>
+    </text>
+    <text x="0" y="56" class="mono" font-size="36" font-weight="600" text-anchor="middle">
+      <tspan fill="#54aeff">tile</tspan><tspan fill="#80ccff">[</tspan><tspan fill="#b6e3ff">row</tspan><tspan fill="#80ccff">,</tspan><tspan fill="#b6e3ff"> col</tspan><tspan fill="#80ccff">]</tspan><tspan fill="#596775"> = </tspan><tspan fill="#b6e3ff">value</tspan><tspan fill="#596775">;</tspan>
+      <tspan fill="#596775" dx="32" font-size="24">// swizzled, composed, zero-cost</tspan>
+    </text>
+  </g>
+  
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- THE DEDICATION - Bottom -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <g transform="translate(1280, 1340)">
+    <text x="0" y="0" class="mono" fill="#596775" font-size="18" font-weight="400" text-anchor="middle" opacity="0.6">
+      <tspan>dedicated to those who built the foundations we stand on</tspan>
+    </text>
+    <text x="0" y="40" class="mono" font-size="20" font-weight="500" text-anchor="middle">
+      <tspan fill="#54aeff">//</tspan>
+      <tspan fill="#b6e3ff" dx="12">mdspan-cute</tspan>
+      <tspan fill="#54aeff" dx="12">//</tspan>
+      <tspan fill="#596775" dx="12">weyl.ai</tspan>
+      <tspan fill="#54aeff" dx="12">//</tspan>
+      <tspan fill="#596775" dx="12">2026</tspan>
+    </text>
+  </g>
+  
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- THE CURSOR - alive -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <g transform="translate(1580, 1156)">
+    <rect x="0" y="-24" width="16" height="32" fill="#54aeff" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;0;0.9" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+</svg>

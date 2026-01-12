@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#54aeff"/>
+      <stop offset="50%" stop-color="#b6e3ff"/>
+      <stop offset="100%" stop-color="#54aeff"/>
+    </linearGradient>
+    <linearGradient id="fadeUp" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#111417"/>
+      <stop offset="100%" stop-color="#54aeff" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <!-- Decorative lines -->
+  <line x1="200" y1="200" x2="1720" y2="200" stroke="#54aeff" stroke-width="1" opacity="0.3"/>
+  <line x1="200" y1="880" x2="1720" y2="880" stroke="#54aeff" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Main title -->
+  <text x="960" y="320" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="72" font-weight="700" fill="url(#titleGrad)">THE VILLA STRAYLIGHT</text>
+  <text x="960" y="410" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="72" font-weight="700" fill="url(#titleGrad)">PAPERS</text>
+  
+  <!-- Subtitle -->
+  <text x="960" y="500" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">A Formal Treatment of NVIDIA's Layout Algebra</text>
+  
+  <!-- Decorative separator -->
+  <line x1="600" y1="560" x2="1320" y2="560" stroke="#54aeff" stroke-width="2"/>
+  
+  <!-- Author/org -->
+  <text x="960" y="640" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#b6e3ff">razorgirl / Weyl AI / 2026</text>
+  
+  <!-- Stats -->
+  <g transform="translate(960, 750)">
+    <text x="-300" y="0" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" fill="#54aeff">21</text>
+    <text x="-300" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">theorems</text>
+    
+    <text x="0" y="0" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" fill="#80ccff">0</text>
+    <text x="0" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">sorry</text>
+    
+    <text x="300" y="0" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" fill="#b6e3ff">∞</text>
+    <text x="300" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">TFLOPS</text>
+  </g>
+  
+  <!-- Quote -->
+  <text x="960" y="920" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" font-style="italic" fill="#596775">"The Villa Straylight knows no sky, recorded or otherwise."</text>
+  <text x="960" y="950" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">— Neuromancer</text>
+  
+  <!-- Tech stack -->
+  <text x="960" y="1020" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">Lean 4 · Mathlib · CUTLASS · CuTe</text>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775" opacity="0.6">ono-sendai-razorgirl</text>
+</svg>

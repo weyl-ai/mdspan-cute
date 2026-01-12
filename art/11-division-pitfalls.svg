@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <text x="960" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" font-weight="600" fill="#80ccff">Integer Division Pitfalls</text>
+  <text x="960" y="115" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">"Unlike real numbers, integer division can be anti-intuitive"</text>
+  
+  <!-- Pitfall 1 -->
+  <g transform="translate(100, 180)">
+    <rect x="0" y="0" width="800" height="220" rx="8" fill="#111417" stroke="#596775" stroke-width="2"/>
+    <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">Pitfall 1: Addition</text>
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#596775">(a + b) / c  ≠  a/c + b/c</text>
+    <g transform="translate(30, 110)">
+      <text x="0" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Example: a=5, b=3, c=4</text>
+      <text x="0" y="60" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">(5 + 3) / 4 = 8 / 4 = 2</text>
+      <text x="0" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">5/4 + 3/4 = 1 + 0 = 1</text>
+      <text x="450" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#54aeff">2 ≠ 1</text>
+    </g>
+  </g>
+  
+  <!-- Pitfall 2 -->
+  <g transform="translate(1000, 180)">
+    <rect x="0" y="0" width="800" height="220" rx="8" fill="#111417" stroke="#596775" stroke-width="2"/>
+    <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">Pitfall 2: Multiplication Order</text>
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#596775">a × (b / c)  ≠  (a × b) / c</text>
+    <g transform="translate(30, 110)">
+      <text x="0" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Example: a=2, b=5, c=3</text>
+      <text x="0" y="60" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">2 × (5 / 3) = 2 × 1 = 2</text>
+      <text x="0" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">(2 × 5) / 3 = 10 / 3 = 3</text>
+      <text x="450" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#54aeff">2 ≠ 3</text>
+    </g>
+  </g>
+  
+  <!-- Pitfall 3 -->
+  <g transform="translate(100, 450)">
+    <rect x="0" y="0" width="800" height="220" rx="8" fill="#111417" stroke="#596775" stroke-width="2"/>
+    <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">Pitfall 3: Nested Division</text>
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#596775">(a / b) × c  ≠  a / (b / c)</text>
+    <g transform="translate(30, 110)">
+      <text x="0" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Example: a=20, b=6, c=2</text>
+      <text x="0" y="60" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">(20 / 6) × 2 = 3 × 2 = 6</text>
+      <text x="0" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">20 / (6 / 2) = 20 / 3 = 6</text>
+      <text x="450" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#54aeff">6 = 6 (lucky!)</text>
+    </g>
+  </g>
+  
+  <!-- What DOES work -->
+  <g transform="translate(1000, 450)">
+    <rect x="0" y="0" width="800" height="220" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#54aeff">What DOES Work</text>
+    <g transform="translate(30, 70)">
+      <text x="0" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">✓</text>
+      <text x="30" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">a / (b × c) = (a / b) / c</text>
+      <text x="450" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Thm 4.6</text>
+      <text x="0" y="70" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">✓</text>
+      <text x="30" y="70" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">c | b ⟹ a × (b/c) = (a×b)/c</text>
+      <text x="450" y="70" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Thm 4.5</text>
+      <text x="0" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">✓</text>
+      <text x="30" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">c | a ⟹ (a+b) % c = b % c</text>
+      <text x="450" y="110" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Thm 4.2</text>
+      <text x="0" y="150" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">✓</text>
+      <text x="30" y="150" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">(a % (b×c)) % b = a % b</text>
+      <text x="450" y="150" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">Thm 4.3</text>
+    </g>
+  </g>
+  
+  <!-- The key identity -->
+  <g transform="translate(100, 720)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">The Foundation: Division Algorithm</text>
+    <rect x="0" y="30" width="1700" height="100" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="850" y="90" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="32" fill="#b6e3ff">a = (a / b) × b + (a % b)    where 0 ≤ (a % b) &lt; b</text>
+  </g>
+  
+  <!-- GPU warning -->
+  <g transform="translate(100, 880)">
+    <rect x="0" y="0" width="1700" height="70" rx="8" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="30" y="45" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#80ccff">⚠ GPU bug pattern: Assuming real-number algebra in index calculations. Always verify divisibility!</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · pitfalls · 2026</text>
+</svg>

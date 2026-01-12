@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#54aeff" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#b6e3ff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#54aeff" stop-opacity="0.6"/>
+    </linearGradient>
+    <marker id="arrowRight" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#54aeff"/>
+    </marker>
+    <marker id="arrowLeft" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+      <path d="M9,0 L9,6 L0,3 z" fill="#80ccff"/>
+    </marker>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <text x="960" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" font-weight="600" fill="#80ccff">Coordinate Isomorphism</text>
+  <text x="960" y="115" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">Theorems 1.1, 1.2 · The Foundation of Layout Algebra</text>
+  
+  <!-- 1D Array -->
+  <g transform="translate(100, 200)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">1D Linear Index</text>
+    <g transform="translate(0, 30)">
+      <rect x="0" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="65" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="130" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="195" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="260" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="325" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="390" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="3"/>
+      <rect x="455" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="520" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="585" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="650" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <rect x="715" y="0" width="60" height="50" rx="4" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+      <text x="30" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">0</text>
+      <text x="95" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">1</text>
+      <text x="160" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">2</text>
+      <text x="225" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">3</text>
+      <text x="290" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">4</text>
+      <text x="355" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">5</text>
+      <text x="420" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">6</text>
+      <text x="485" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">7</text>
+      <text x="550" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">8</text>
+      <text x="615" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">9</text>
+      <text x="680" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">10</text>
+      <text x="745" y="32" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">11</text>
+    </g>
+    <text x="390" y="110" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">x ∈ [0, M₀ × M₁) = [0, 12)</text>
+  </g>
+  
+  <!-- Bidirectional arrows -->
+  <g transform="translate(960, 350)">
+    <line x1="-100" y1="0" x2="100" y2="0" stroke="#54aeff" stroke-width="2" marker-end="url(#arrowRight)"/>
+    <line x1="100" y1="20" x2="-100" y2="20" stroke="#80ccff" stroke-width="2" marker-end="url(#arrowLeft)"/>
+    <text x="0" y="-15" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">decompose</text>
+    <text x="0" y="50" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#80ccff">recompose</text>
+  </g>
+  
+  <!-- 2D Grid -->
+  <g transform="translate(1100, 180)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#80ccff">2D Coordinates (M₀=4, M₁=3)</text>
+    <g transform="translate(0, 30)">
+      <!-- Row labels -->
+      <text x="-30" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">0</text>
+      <text x="-30" y="95" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">1</text>
+      <text x="-30" y="155" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">2</text>
+      <text x="-50" y="95" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">x₁</text>
+      <!-- Col labels -->
+      <text x="30" y="-10" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">0</text>
+      <text x="90" y="-10" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">1</text>
+      <text x="150" y="-10" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff">2</text>
+      <text x="210" y="-10" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">3</text>
+      <text x="120" y="-25" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">x₀</text>
+      <!-- Grid cells -->
+      <rect x="0" y="0" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="60" y="0" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="120" y="0" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="180" y="0" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="0" y="60" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="60" y="60" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="120" y="60" width="55" height="55" rx="4" fill="#111417" stroke="#b6e3ff" stroke-width="3"/>
+      <rect x="180" y="60" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="0" y="120" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="60" y="120" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="120" y="120" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <rect x="180" y="120" width="55" height="55" rx="4" fill="#111417" stroke="#54aeff"/>
+      <!-- Values -->
+      <text x="27" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">0</text>
+      <text x="87" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">1</text>
+      <text x="147" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">2</text>
+      <text x="207" y="35" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">3</text>
+      <text x="27" y="95" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">4</text>
+      <text x="87" y="95" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">5</text>
+      <text x="147" y="95" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#b6e3ff">6</text>
+      <text x="207" y="95" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">7</text>
+      <text x="27" y="155" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">8</text>
+      <text x="87" y="155" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">9</text>
+      <text x="147" y="155" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">10</text>
+      <text x="207" y="155" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">11</text>
+    </g>
+  </g>
+  
+  <!-- Example calculation -->
+  <g transform="translate(100, 480)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Example: x = 6, M₀ = 4</text>
+    <rect x="0" y="30" width="800" height="200" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="30" y="70" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#54aeff">decompose:</text>
+    <text x="200" y="70" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">x₀ = 6 % 4 = 2</text>
+    <text x="200" y="105" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">x₁ = 6 / 4 = 1</text>
+    <text x="200" y="140" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#596775">→ (2, 1)</text>
+    <text x="30" y="185" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#80ccff">recompose:</text>
+    <text x="200" y="185" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">x₀ + x₁ × M₀ = 2 + 1 × 4 = 6 ✓</text>
+  </g>
+  
+  <!-- Formulas -->
+  <g transform="translate(1000, 480)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">The Bijection</text>
+    <rect x="0" y="30" width="800" height="200" rx="8" fill="#111417" stroke="url(#bridgeGrad)" stroke-width="2"/>
+    <text x="400" y="80" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="22" fill="#b6e3ff">decompose(x) = (x % M₀, x / M₀)</text>
+    <text x="400" y="130" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="22" fill="#b6e3ff">recompose(x₀, x₁) = x₀ + x₁ × M₀</text>
+    <text x="400" y="190" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">recompose ∘ decompose = id    (Thm 1.1)</text>
+    <text x="400" y="215" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">decompose ∘ recompose = id    (Thm 1.2)</text>
+  </g>
+  
+  <!-- GPU Application -->
+  <g transform="translate(100, 760)">
+    <rect x="0" y="0" width="1700" height="100" rx="8" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="30" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#54aeff">GPU Application:</text>
+    <text x="260" y="40" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">threadIdx.x → (row, col) for 2D tile access</text>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Linear thread ID becomes multidimensional coordinate. This is the foundation of all tensor indexing.</text>
+  </g>
+  
+  <!-- Lean -->
+  <g transform="translate(100, 920)">
+    <rect x="0" y="0" width="1700" height="50" rx="6" fill="#111417" stroke="#596775" stroke-width="1"/>
+    <text x="20" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">theorem</text>
+    <text x="100" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff"> recompose_decompose_2d</text>
+    <text x="330" y="32" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff"> (x : ℕ) (hx : x &lt; M₀ * M₁) : recompose₂ M₀ (decompose₂ M₀ M₁ x) = x</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · 1.1-1.2 · 2026</text>
+</svg>

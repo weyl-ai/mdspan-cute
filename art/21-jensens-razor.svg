@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <linearGradient id="razorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#54aeff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#111417" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <!-- Decorative razor line -->
+  <line x1="100" y1="150" x2="1820" y2="150" stroke="url(#razorGrad)" stroke-width="1"/>
+  
+  <text x="960" y="80" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="56" font-weight="600" fill="#80ccff">Jensen's Razor</text>
+  <text x="960" y="130" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">§0 · The Gothic Folly</text>
+  
+  <!-- The razor statement -->
+  <g transform="translate(260, 200)">
+    <rect x="0" y="0" width="1400" height="100" rx="8" fill="#111417" stroke="#54aeff" stroke-width="3"/>
+    <text x="700" y="60" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="32" font-weight="600" fill="#b6e3ff">Never attribute to search what can be proven by construction.</text>
+  </g>
+  
+  <!-- Night City quote -->
+  <g transform="translate(100, 350)">
+    <rect x="0" y="0" width="1700" height="120" rx="8" fill="#111417" stroke="#596775" stroke-width="1" stroke-dasharray="5,5"/>
+    <text x="30" y="35" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">
+      "Night City was like a deranged experiment in Social Darwinism,
+    </text>
+    <text x="30" y="55" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">
+      designed by a bored researcher who kept one thumb permanently on the fast-forward button.
+    </text>
+    <text x="30" y="75" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">
+      Stop hustling and you sank without a trace, but move a little too swiftly and you'd
+    </text>
+    <text x="30" y="95" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" font-style="italic" fill="#596775">
+      break the fragile surface tension of the black market..."
+    </text>
+    <text x="1650" y="105" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">— Neuromancer</text>
+  </g>
+  
+  <!-- Two paths -->
+  <g transform="translate(100, 520)">
+    <!-- Move too slow -->
+    <rect x="0" y="0" width="800" height="200" rx="8" fill="#111417" stroke="#596775" stroke-width="2"/>
+    <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">Move Too Slow</text>
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Runtime search for valid tilings</text>
+    <text x="30" y="120" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Autotuning without theory</text>
+    <text x="30" y="150" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Hope for the best</text>
+    <text x="400" y="185" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#596775">TFLOPS on the table. Sink without a trace.</text>
+  </g>
+  
+  <g transform="translate(1000, 520)">
+    <!-- Move too fast -->
+    <rect x="0" y="0" width="800" height="200" rx="8" fill="#111417" stroke="#596775" stroke-width="2"/>
+    <text x="400" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">Move Too Fast</text>
+    <text x="30" y="90" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Skip the math, trust intuition</text>
+    <text x="30" y="120" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Assume real-number algebra</text>
+    <text x="30" y="150" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#596775">Deploy untested kernels</text>
+    <text x="400" y="185" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#596775">Break the surface tension. Silent corruption.</text>
+  </g>
+  
+  <!-- The solution -->
+  <g transform="translate(100, 780)">
+    <rect x="0" y="0" width="1700" height="140" rx="8" fill="#111417" stroke="#54aeff" stroke-width="3"/>
+    <text x="850" y="45" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#54aeff">The Solution: Prove by Construction</text>
+    <text x="850" y="85" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#b6e3ff">Prove tilings valid before compilation. The search space collapses.</text>
+    <text x="850" y="120" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="20" fill="#80ccff">The types won't let you break the surface.</text>
+  </g>
+  
+  <!-- Villa Straylight reference -->
+  <g transform="translate(100, 970)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">
+      "NVIDIA's CUDA stack is Villa Straylight. Not metaphorically. Architecturally.
+    </text>
+    <text x="0" y="25" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">
+      A body grown in upon itself. Each space in some way secret."
+    </text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · §0 · 2026</text>
+</svg>

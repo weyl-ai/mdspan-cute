@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#596775" stroke-width="0.5" opacity="0.15"/>
+    </pattern>
+    <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#54aeff" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#b6e3ff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#54aeff" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1920" height="1080" fill="#111417"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <text x="960" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="48" font-weight="600" fill="#80ccff">Mode and Layout</text>
+  <text x="960" y="115" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="24" fill="#596775">§1 · The Rectilinear Chamber · Foundation of Tensor Addressing</text>
+  
+  <!-- Mode structure -->
+  <g transform="translate(100, 180)">
+    <rect x="0" y="0" width="750" height="380" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="375" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#54aeff">Mode</text>
+    <text x="375" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">One dimension of a layout</text>
+    
+    <!-- Lean definition -->
+    <g transform="translate(30, 100)">
+      <rect x="0" y="0" width="690" height="120" rx="4" fill="#0d1012" stroke="#596775" stroke-width="1"/>
+      <text x="15" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">structure</text>
+      <text x="95" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff"> Mode</text>
+      <text x="150" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775"> where</text>
+      <text x="30" y="55" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff">shape : Nat</text>
+      <text x="200" y="55" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">-- elements along this dimension</text>
+      <text x="30" y="80" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#b6e3ff">stride : Nat</text>
+      <text x="200" y="80" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">-- memory distance between elements</text>
+      <text x="30" y="105" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">shape_pos : shape &gt; 0</text>
+      <text x="280" y="105" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">-- PROOF!</text>
+    </g>
+    
+    <!-- Example -->
+    <g transform="translate(30, 240)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Example: Column mode of 4×8 row-major matrix</text>
+      <g transform="translate(0, 25)">
+        <rect x="0" y="0" width="200" height="80" rx="4" fill="#111417" stroke="#80ccff" stroke-width="2"/>
+        <text x="100" y="25" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff">Mode</text>
+        <text x="20" y="50" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">shape = 8</text>
+        <text x="20" y="70" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#b6e3ff">stride = 1</text>
+        <text x="230" y="50" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">← consecutive in memory</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Layout structure -->
+  <g transform="translate(950, 180)">
+    <rect x="0" y="0" width="850" height="380" rx="8" fill="#111417" stroke="#80ccff" stroke-width="2"/>
+    <text x="425" y="40" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">Layout</text>
+    <text x="425" y="70" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">A list of modes</text>
+    
+    <!-- Lean definition -->
+    <g transform="translate(30, 100)">
+      <rect x="0" y="0" width="790" height="80" rx="4" fill="#0d1012" stroke="#596775" stroke-width="1"/>
+      <text x="15" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">def</text>
+      <text x="50" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#80ccff"> Layout</text>
+      <text x="120" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775"> := List Mode</text>
+      <text x="15" y="60" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">-- [innermost, ..., outermost]</text>
+    </g>
+    
+    <!-- Example -->
+    <g transform="translate(30, 200)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Example: 4×8 row-major matrix</text>
+      <g transform="translate(0, 25)">
+        <rect x="0" y="0" width="150" height="80" rx="4" fill="#111417" stroke="#54aeff"/>
+        <text x="75" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#54aeff">Mode 0</text>
+        <text x="10" y="45" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="11" fill="#b6e3ff">shape=8</text>
+        <text x="10" y="65" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="11" fill="#b6e3ff">stride=1</text>
+        
+        <rect x="160" y="0" width="150" height="80" rx="4" fill="#111417" stroke="#80ccff"/>
+        <text x="235" y="20" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#80ccff">Mode 1</text>
+        <text x="170" y="45" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="11" fill="#b6e3ff">shape=4</text>
+        <text x="170" y="65" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="11" fill="#b6e3ff">stride=8</text>
+        
+        <text x="350" y="45" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">cols (inner)</text>
+        <text x="350" y="65" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="12" fill="#596775">rows (outer)</text>
+      </g>
+    </g>
+    
+    <!-- Eval function -->
+    <g transform="translate(30, 320)">
+      <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#54aeff">eval(row=2, col=5) = 2×8 + 5×1 = 21</text>
+    </g>
+  </g>
+  
+  <!-- The eval function -->
+  <g transform="translate(100, 620)">
+    <text x="0" y="0" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="28" fill="#80ccff">The Layout Function</text>
+    <rect x="0" y="30" width="1700" height="180" rx="8" fill="#111417" stroke="url(#bridgeGrad)" stroke-width="2"/>
+    
+    <text x="850" y="80" text-anchor="middle" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="32" fill="#b6e3ff">eval(x₀, x₁, …, xₙ₋₁) = Σᵢ xᵢ · dᵢ</text>
+    
+    <g transform="translate(30, 110)">
+      <text x="0" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Shape    S = (M₀, M₁, …, Mₙ₋₁)</text>
+      <text x="350" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">positive integers</text>
+      <text x="0" y="55" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Stride   D = (d₀, d₁, …, dₙ₋₁)</text>
+      <text x="350" y="55" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">positive integers</text>
+      <text x="0" y="80" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">Coord    C ∈ [0,M₀) × [0,M₁) × …</text>
+      <text x="350" y="80" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">in-bounds coordinates</text>
+    </g>
+    
+    <g transform="translate(900, 110)">
+      <text x="0" y="30" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#54aeff">Coordinates → Linear Index</text>
+      <text x="0" y="60" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775">This is how tensor[i,j,k] becomes memory[addr]</text>
+    </g>
+  </g>
+  
+  <!-- Why proof field matters -->
+  <g transform="translate(100, 870)">
+    <rect x="0" y="0" width="1700" height="80" rx="8" fill="#111417" stroke="#54aeff" stroke-width="2"/>
+    <text x="30" y="35" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#54aeff">Why shape_pos : shape &gt; 0 matters:</text>
+    <text x="450" y="35" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="18" fill="#b6e3ff">You cannot construct a Mode with shape = 0</text>
+    <text x="30" y="65" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="16" fill="#596775">This is a PROOF OBLIGATION enforced by the type system. Invalid layouts are unconstructible.</text>
+  </g>
+  
+  <text x="1870" y="1050" text-anchor="end" font-family="Berkeley Mono, SF Mono, Consolas, monospace" font-size="14" fill="#596775" opacity="0.6">razorgirl · §1 · 2026</text>
+</svg>
