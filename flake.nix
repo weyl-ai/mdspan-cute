@@ -7,19 +7,25 @@
     flake-parts.follows = "weyl-std/flake-parts";
   };
 
-  outputs = inputs@{ flake-parts, weyl-std, ... }:
+  outputs =
+    inputs@{ flake-parts, weyl-std, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ weyl-std.flakeModules.default ];
 
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
       weyl-std = {
         nixpkgs.cuda.enable = true;
         overlays.enable = true;
       };
 
-      perSystem = { pkgs, lib, ... }:
+      perSystem =
+        { pkgs, lib, ... }:
         let
+          llvmPkgs = pkgs.llvmPackages_latest;
           cutlass = pkgs.callPackage ./cutlass.nix { };
           mdspan-cute = pkgs.callPackage ./package.nix { inherit cutlass; };
           example = pkgs.callPackage ./example.nix {
@@ -34,23 +40,92 @@
         {
           packages = {
             default = mdspan-cute;
-            inherit mdspan-cute cutlass example tests;
+            inherit
+              mdspan-cute
+              cutlass
+              example
+              tests
+              ;
+
+            # === Buck2 Toolchain Exports ===
+            # These are consumed by buck2-nix's flake.package rule
+
+            # LLVM toolchain - all tools needed for C++ compilation
+            llvm-toolchain = pkgs.runCommand "llvm-toolchain" { } ''
+              mkdir -p $out/bin
+
+              # Symlink all LLVM/Clang binaries
+              for pkg in ${llvmPkgs.clang} ${llvmPkgs.lld} ${llvmPkgs.llvm}; do
+                if [ -d "$pkg/bin" ]; then
+                  for bin in "$pkg/bin"/*; do
+                    [ -e "$bin" ] && ln -sf "$bin" "$out/bin/$(basename "$bin")"
+                  done
+                fi
+              done
+
+              # Create cc/c++ symlinks expected by buck2-nix
+              ln -sf ${llvmPkgs.clang}/bin/clang $out/bin/cc
+              ln -sf ${llvmPkgs.clang}/bin/clang++ $out/bin/c++
+
+              # Standard binutils-like tools from LLVM
+              ln -sf ${llvmPkgs.llvm}/bin/llvm-ar $out/bin/ar
+              ln -sf ${llvmPkgs.llvm}/bin/llvm-nm $out/bin/nm
+              ln -sf ${llvmPkgs.llvm}/bin/llvm-objcopy $out/bin/objcopy
+              ln -sf ${llvmPkgs.llvm}/bin/llvm-ranlib $out/bin/ranlib
+              ln -sf ${llvmPkgs.llvm}/bin/llvm-strip $out/bin/strip
+
+              # Copy library paths
+              mkdir -p $out/lib
+              for pkg in ${llvmPkgs.libcxx} ${llvmPkgs.compiler-rt}; do
+                if [ -d "$pkg/lib" ]; then
+                  cp -rsf "$pkg/lib"/* $out/lib/ 2>/dev/null || true
+                fi
+              done
+            '';
+
+            # Catch2 for tests
+            catch2 = pkgs.catch2_3;
+
+            # RapidCheck for property-based testing
+            rapidcheck = pkgs.rapidcheck;
+
+            # Python for buck2 toolchains
+            python3 = pkgs.python3;
+
+            # mdspan reference implementation
+            mdspan = pkgs.mdspan;
+
+            # CUDA SDK (cuda-merged with cudart, cccl)
+            cuda-sdk = pkgs.symlinkJoin {
+              name = "cuda-sdk";
+              paths = with pkgs.cudaPackages; [
+                cuda_cudart
+                cuda_cccl
+              ];
+            };
           };
 
           devShells.default = pkgs.mkShell {
             name = "mdspan-cute-dev";
 
-            packages = with pkgs; [
-              mdspan-cute
-              cutlass
-              llvmPackages.clang
-              cmake
-              ninja
-            ] ++ lib.optionals pkgs.stdenv.isLinux [
-              cudaPackages.cuda_nvcc
-              cudaPackages.cuda_cudart
-              cudaPackages.cuda_cccl
-            ];
+            packages =
+              with pkgs;
+              [
+                mdspan-cute
+                cutlass
+                llvmPackages.clang
+                cmake
+                ninja
+                buck2
+                # Testing frameworks (needed for Buck2 builds via NIX_CFLAGS)
+                catch2_3
+                rapidcheck
+              ]
+              ++ lib.optionals pkgs.stdenv.isLinux [
+                cudaPackages.cuda_nvcc
+                cudaPackages.cuda_cudart
+                cudaPackages.cuda_cccl
+              ];
 
             shellHook = ''
               echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -87,7 +162,7 @@
               echo ""
               echo "  Lean version: $(elan show active-toolchain 2>/dev/null || echo 'run: elan default leanprover/lean4:v4.15.0')"
               echo ""
-              
+
               # Ensure elan has the right toolchain
               if [ -f proof/lean-toolchain ]; then
                 cd proof && elan override set "$(cat lean-toolchain)" && cd ..

@@ -13,7 +13,8 @@
 
 #include <mdspan_cute/layout_cute.h>
 
-using namespace mdspan_cute;
+// Note: Per weyl-std C++ guidelines, we use fully qualified names throughout.
+// No 'using namespace' declarations.
 
 namespace {
 
@@ -98,15 +99,15 @@ void for_each_coord_safely(Extents const &exts, F &&f) {
 
 TEST_CASE("cute_to_extents preserves static arity", "[traits]") {
   using L1 = decltype(make_static_2d_layout<2, 3>());
-  using S1 = cute_shape_t<L1>;
-  using E1 = detail::cute_to_extents_t<std::size_t, S1>;
+  using S1 = mdspan_cute::cute_shape_t<L1>;
+  using E1 = mdspan_cute::detail::cute_to_extents_t<std::size_t, S1>;
   static_assert(E1::rank() == 2);
   static_assert(E1::static_extent(0) == 2);
   static_assert(E1::static_extent(1) == 3);
 
   using L2 = decltype(cute::make_layout(cute::make_shape(cute::Int<4>{})));
-  using S2 = cute_shape_t<L2>;
-  using E2 = detail::cute_to_extents_t<std::size_t, S2>;
+  using S2 = mdspan_cute::cute_shape_t<L2>;
+  using E2 = mdspan_cute::detail::cute_to_extents_t<std::size_t, S2>;
   static_assert(E2::rank() == 1);
   static_assert(E2::static_extent(0) == 4);
 }
@@ -114,13 +115,13 @@ TEST_CASE("cute_to_extents preserves static arity", "[traits]") {
 TEST_CASE("cute_to_extents preserves mixed static/dynamic", "[traits]") {
   auto cl = cute::make_layout(cute::make_shape(cute::Int<4>{}, 7));
   using CL = decltype(cl);
-  using S = cute_shape_t<CL>;
-  using E = detail::cute_to_extents_t<std::size_t, S>;
+  using S = mdspan_cute::cute_shape_t<CL>;
+  using E = mdspan_cute::detail::cute_to_extents_t<std::size_t, S>;
   static_assert(E::rank() == 2);
   static_assert(E::static_extent(0) == 4);
-  static_assert(E::static_extent(1) == std::dynamic_extent);
+  static_assert(E::static_extent(1) == std::experimental::dynamic_extent);
 
-  E ex = detail::make_extents_from_shape<E>(cute::shape(cl));
+  E ex = mdspan_cute::detail::make_extents_from_shape<E>(cute::shape(cl));
   REQUIRE(ex.extent(0) == 4);
   REQUIRE(ex.extent(1) == 7);
 }
@@ -133,11 +134,11 @@ TEST_CASE("mapping parity: 2D static layout", "[mapping]") {
 
   auto cl = make_static_2d_layout<2, 3>();
   using CL = decltype(cl);
-  using shape_t = cute_shape_t<CL>;
-  using exts_t = detail::cute_to_extents_t<std::size_t, shape_t>;
+  using shape_t = mdspan_cute::cute_shape_t<CL>;
+  using exts_t = mdspan_cute::detail::cute_to_extents_t<std::size_t, shape_t>;
 
-  exts_t exts = detail::make_extents_from_shape<exts_t>(cute::shape(cl));
-  layout_cute<CL>::template mapping<exts_t> m(exts, cl);
+  exts_t exts = mdspan_cute::detail::make_extents_from_shape<exts_t>(cute::shape(cl));
+  mdspan_cute::layout_cute<CL>::template mapping<exts_t> m(exts, cl);
 
   REQUIRE(m.required_span_size() ==
           static_cast<typename exts_t::index_type>(cute::cosize(cl)));
@@ -152,10 +153,10 @@ TEST_CASE("mapping parity: 2D static layout", "[mapping]") {
 TEST_CASE("mapping parity: 1D dynamic", "[mapping]") {
   auto cl = make_dynamic_1d_layout(37);
   using CL = decltype(cl);
-  using shape_t = cute_shape_t<CL>;
-  using exts_t = detail::cute_to_extents_t<std::size_t, shape_t>;
-  exts_t exts = detail::make_extents_from_shape<exts_t>(cute::shape(cl));
-  layout_cute<CL>::template mapping<exts_t> m(cl); // uses layout->extents ctor
+  using shape_t = mdspan_cute::cute_shape_t<CL>;
+  using exts_t = mdspan_cute::detail::cute_to_extents_t<std::size_t, shape_t>;
+  exts_t exts = mdspan_cute::detail::make_extents_from_shape<exts_t>(cute::shape(cl));
+  mdspan_cute::layout_cute<CL>::template mapping<exts_t> m(cl); // uses layout->extents ctor
 
   REQUIRE(m.extents().extent(0) == exts.extent(0));
   REQUIRE(m.required_span_size() ==
@@ -175,14 +176,14 @@ TEST_CASE("mapping parity: 1D dynamic", "[mapping]") {
 TEST_CASE("swizzled 2D mapping parity", "[swizzle]") {
   auto base = make_dynamic_2d_layout(8, 8);
   auto shape = cute::shape(base);
-  auto swz = cute::composition(swizzle::sw32{}, base); // simple row swizzle
+  auto swz = cute::composition(mdspan_cute::swizzle::sw32{}, base); // simple row swizzle
 
   using CL = decltype(swz);
-  using shape_t = cute_shape_t<CL>;
-  using exts_t = detail::cute_to_extents_t<std::size_t, shape_t>;
-  exts_t exts = detail::make_extents_from_shape<exts_t>(shape);
+  using shape_t = mdspan_cute::cute_shape_t<CL>;
+  using exts_t = mdspan_cute::detail::cute_to_extents_t<std::size_t, shape_t>;
+  exts_t exts = mdspan_cute::detail::make_extents_from_shape<exts_t>(shape);
 
-  layout_cute<CL>::template mapping<exts_t> m(exts, swz);
+  mdspan_cute::layout_cute<CL>::template mapping<exts_t> m(exts, swz);
 
   REQUIRE(m.is_unique());
   REQUIRE(m.is_strided() == false);
@@ -201,12 +202,12 @@ TEST_CASE("swizzled 2D mapping parity", "[swizzle]") {
 TEST_CASE("make_mdspan: dynamic 2D", "[factory]") {
   auto cl = make_dynamic_2d_layout(7, 5);
   using CL = decltype(cl);
-  using shape_t = cute_shape_t<CL>;
-  using exts_t = detail::cute_to_extents_t<std::size_t, shape_t>;
-  exts_t exts = detail::make_extents_from_shape<exts_t>(cute::shape(cl));
+  using shape_t = mdspan_cute::cute_shape_t<CL>;
+  using exts_t = mdspan_cute::detail::cute_to_extents_t<std::size_t, shape_t>;
+  exts_t exts = mdspan_cute::detail::make_extents_from_shape<exts_t>(cute::shape(cl));
 
   std::vector<int> buf(cute::cosize(cl));
-  auto md = make_mdspan(buf.data(), cl);
+  auto md = mdspan_cute::make_mdspan(buf.data(), cl);
 
   REQUIRE(md.extents().extent(0) == exts.extent(0));
   REQUIRE(md.extents().extent(1) == exts.extent(1));
@@ -228,7 +229,7 @@ TEST_CASE("as_mdspan: cute::Tensor roundtrip", "[factory]") {
   std::vector<int> storage(cute::cosize(cl), -1);
 
   auto t = cute::make_tensor(storage.data(), cl);
-  auto md = as_mdspan(t);
+  auto md = mdspan_cute::as_mdspan(t);
 
   REQUIRE(md.extent(0) == 3);
   REQUIRE(md.extent(1) == 4);
@@ -258,10 +259,10 @@ TEST_CASE("mapping parity holds for dynamic rank-1", "[property][mapping]") {
       const std::size_t n0 = std::max<std::size_t>(1, n0_ % 64);
       auto cl = make_dynamic_1d_layout(n0);
       using CL = decltype(cl);
-      using S = cute_shape_t<CL>;
-      using E = detail::cute_to_extents_t<std::size_t, S>;
-      E exts = detail::make_extents_from_shape<E>(cute::shape(cl));
-      layout_cute<CL>::template mapping<E> m(exts, cl);
+      using S = mdspan_cute::cute_shape_t<CL>;
+      using E = mdspan_cute::detail::cute_to_extents_t<std::size_t, S>;
+      E exts = mdspan_cute::detail::make_extents_from_shape<E>(cute::shape(cl));
+      mdspan_cute::layout_cute<CL>::template mapping<E> m(exts, cl);
 
       RC_ASSERT(m.required_span_size() ==
                 static_cast<typename E::index_type>(cute::cosize(cl)));
@@ -281,10 +282,10 @@ TEST_CASE("mapping parity holds for dynamic rank-2", "[property][mapping]") {
       const std::size_t n = std::max<std::size_t>(1, n_ % 16);
       auto cl = make_dynamic_2d_layout(m, n);
       using CL = decltype(cl);
-      using S = cute_shape_t<CL>;
-      using E = detail::cute_to_extents_t<std::size_t, S>;
-      E exts = detail::make_extents_from_shape<E>(cute::shape(cl));
-      layout_cute<CL>::template mapping<E> mapp(exts, cl);
+      using S = mdspan_cute::cute_shape_t<CL>;
+      using E = mdspan_cute::detail::cute_to_extents_t<std::size_t, S>;
+      E exts = mdspan_cute::detail::make_extents_from_shape<E>(cute::shape(cl));
+      mdspan_cute::layout_cute<CL>::template mapping<E> mapp(exts, cl);
 
       RC_ASSERT(mapp.required_span_size() ==
                 static_cast<typename E::index_type>(cute::cosize(cl)));
@@ -303,10 +304,10 @@ TEST_CASE("mapping parity holds for dynamic rank-3", "[property][mapping]") {
       const std::size_t c = std::max<std::size_t>(1, c_ % 8);
       auto cl = make_dynamic_3d_layout(a, b, c);
       using CL = decltype(cl);
-      using S = cute_shape_t<CL>;
-      using E = detail::cute_to_extents_t<std::size_t, S>;
-      E exts = detail::make_extents_from_shape<E>(cute::shape(cl));
-      layout_cute<CL>::template mapping<E> mapp(exts, cl);
+      using S = mdspan_cute::cute_shape_t<CL>;
+      using E = mdspan_cute::detail::cute_to_extents_t<std::size_t, S>;
+      E exts = mdspan_cute::detail::make_extents_from_shape<E>(cute::shape(cl));
+      mdspan_cute::layout_cute<CL>::template mapping<E> mapp(exts, cl);
 
       RC_ASSERT(mapp.required_span_size() ==
                 static_cast<typename E::index_type>(cute::cosize(cl)));
@@ -324,9 +325,9 @@ TEST_CASE("mapping parity holds for dynamic rank-3", "[property][mapping]") {
 TEST_CASE("cute_mdspan alias compiles for empty static layout", "[aliases]") {
   auto cl = make_static_2d_layout<2, 3>();
   using CL = decltype(cl);
-  static_assert(cute_static_layout<CL> == std::is_empty_v<CL>);
+  static_assert(mdspan_cute::cute_static_layout<CL> == std::is_empty_v<CL>);
   if constexpr (std::is_empty_v<CL>) {
-    using MD = cute_mdspan<float, CL>;
+    using MD = mdspan_cute::cute_mdspan<float, CL>;
     (void)sizeof(MD);
   } else {
     SUCCEED("Static alias skipped: layout type not empty on this toolchain.");
@@ -367,14 +368,14 @@ using ExtentsFromFlat1 =
 static_assert(ExtentsFromFlat1::rank() == 3);
 static_assert(ExtentsFromFlat1::static_extent(0) == 4);
 static_assert(ExtentsFromFlat1::static_extent(1) == 8);
-static_assert(ExtentsFromFlat1::static_extent(2) == std::dynamic_extent);
+static_assert(ExtentsFromFlat1::static_extent(2) == std::experimental::dynamic_extent);
 
 using ExtentsFromFlat2 =
     mdspan_cute::detail::cute_to_extents_t<std::size_t, FlatShape2>;
 static_assert(ExtentsFromFlat2::rank() == 3);
 static_assert(ExtentsFromFlat2::static_extent(0) == 2);
 static_assert(ExtentsFromFlat2::static_extent(1) == 3);
-static_assert(ExtentsFromFlat2::static_extent(2) == std::dynamic_extent);
+static_assert(ExtentsFromFlat2::static_extent(2) == std::experimental::dynamic_extent);
 
 // Verify simple shapes still work
 using SimpleShape = cute::tuple<cute::Int<16>, cute::Int<8>>;
@@ -390,9 +391,9 @@ using DynShape = cute::tuple<int, cute::Int<8>, int>;
 using DynExtents =
     mdspan_cute::detail::cute_to_extents_t<std::size_t, DynShape>;
 static_assert(DynExtents::rank() == 3);
-static_assert(DynExtents::static_extent(0) == std::dynamic_extent);
+static_assert(DynExtents::static_extent(0) == std::experimental::dynamic_extent);
 static_assert(DynExtents::static_extent(1) == 8);
-static_assert(DynExtents::static_extent(2) == std::dynamic_extent);
+static_assert(DynExtents::static_extent(2) == std::experimental::dynamic_extent);
 static_assert(DynExtents::rank_dynamic() == 2);
 
 // Verify 1D shapes

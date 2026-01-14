@@ -83,6 +83,16 @@ target_link_libraries(swizzled_tile
     mdspan::mdspan
 )
 
+add_executable(simulated_1cta_gemm
+  examples/simulated_1cta_gemm.cpp
+)
+
+target_link_libraries(simulated_1cta_gemm
+  PRIVATE
+    mdspan_cute
+    mdspan::mdspan
+)
+
 # Layout bridge tests (requires CUTLASS)
 add_executable(layout_cute_tests
   tests/test_layout_cute.cpp

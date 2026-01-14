@@ -1,0 +1,8 @@
+# Filegroup for the inner toolchain flake
+filegroup(
+    name = "flake",
+    srcs = [
+        "flake.nix",
+    ],
+    visibility = ["PUBLIC"],
+)

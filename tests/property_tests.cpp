@@ -193,6 +193,8 @@ struct Merge {
 
 } // namespace property_tests
 
+// Note: Per weyl-std C++ guidelines, we use fully qualified names for external namespaces.
+// The local property_tests namespace uses 'using namespace' since it's file-local.
 using namespace property_tests;
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -860,4 +862,324 @@ TEST_CASE("Logic Theorem 1: conditional simplification", "[logic]") {
     // These should be equivalent
     REQUIRE(original == simplified);
   }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// VILLA STRAYLIGHT EXTRACTED PROPERTIES
+// These properties are PROVEN in Lean for all valid inputs.
+// See: proof/VillaStraylight.lean (26 theorems, 0 sorry)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+#include "../proof/extracted/cpp/property_tests.hpp"
+
+// Note: Using fully qualified mdspan_cute::properties:: prefix per weyl-std guidelines.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// §1: Coordinate Isomorphism (from VillaStraylight §1)
+// ─────────────────────────────────────────────────────────────────────────────
+
+TEST_CASE("Villa Straylight: recompose_decompose_2d", "[villa][coords]") {
+  rc::prop("recompose ∘ decompose = id",
+    [](uint8_t M0_raw, uint8_t M1_raw, uint8_t x_raw) {
+    size_t M0 = (M0_raw % 15) + 1;
+    size_t M1 = (M1_raw % 15) + 1;
+    size_t x = x_raw % (M0 * M1);
+    RC_ASSERT(mdspan_cute::properties::prop_recompose_decompose_2d(M0, M1, x));
+  });
+}
+
+TEST_CASE("Villa Straylight: decompose_recompose_2d", "[villa][coords]") {
+  rc::prop("decompose ∘ recompose = id",
+    [](uint8_t M0_raw, uint8_t x0_raw, uint8_t x1_raw) {
+    size_t M0 = (M0_raw % 15) + 1;
+    size_t M1 = 16; // Fixed for simplicity
+    size_t x0 = x0_raw % M0;
+    size_t x1 = x1_raw % M1;
+    RC_ASSERT(mdspan_cute::properties::prop_decompose_recompose_2d(M0, M1, x0, x1));
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// §2: Coalescence (from VillaStraylight §2)
+// ─────────────────────────────────────────────────────────────────────────────
+
+TEST_CASE("Villa Straylight: coalesce_preserves_function", "[villa][coalesce]") {
+  rc::prop("coalescence preserves eval",
+    [](uint8_t s0_raw, uint8_t s1_raw, uint8_t d0_raw) {
+    size_t s0 = (s0_raw % 15) + 1;
+    size_t s1 = (s1_raw % 15) + 1;
+    size_t d0 = (d0_raw % 15) + 1;
+    size_t d1 = s0 * d0; // packed merge condition
+    size_t x0 = *rc::gen::inRange<size_t>(0, s0);
+    size_t x1 = *rc::gen::inRange<size_t>(0, s1);
+    RC_ASSERT(mdspan_cute::properties::prop_coalesce_preserves_function(s0, d0, s1, d1, x0, x1));
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// §3: Ceiling Division - The Galois Connection (from VillaStraylight §3)
+// ─────────────────────────────────────────────────────────────────────────────
+
+TEST_CASE("Villa Straylight: ceilDiv_le_iff (Galois)", "[villa][ceildiv]") {
+  rc::prop("⌈a/b⌉ ≤ Q ⟺ a ≤ Q×b",
+    [](uint8_t a_raw, uint8_t b_raw, uint8_t Q_raw) {
+    size_t a = a_raw;
+    size_t b = (b_raw % 15) + 1;
+    size_t Q = Q_raw % 32;
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_le_iff(a, b, Q));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_assoc", "[villa][ceildiv]") {
+  rc::prop("⌈⌈i/n⌉/m⌉ = ⌈i/(m×n)⌉",
+    [](uint8_t i_raw, uint8_t m_raw, uint8_t n_raw) {
+    size_t i = i_raw;
+    size_t m = (m_raw % 15) + 1;
+    size_t n = (n_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_assoc(i, m, n));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_of_dvd", "[villa][ceildiv]") {
+  rc::prop("divisible ⟹ ⌈n/d⌉ = n/d",
+    [](uint8_t k_raw, uint8_t d_raw) {
+    size_t d = (d_raw % 15) + 1;
+    size_t k = k_raw % 16;
+    size_t n = d * k; // divisible
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_of_dvd(n, d));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_eq_div_add_one_of_not_dvd", "[villa][ceildiv]") {
+  rc::prop("indivisible ⟹ ⌈n/d⌉ = n/d + 1",
+    [](uint8_t n_raw, uint8_t d_raw) {
+    size_t n = n_raw + 1;
+    size_t d = (d_raw % 14) + 2;
+    RC_PRE(n % d != 0); // indivisible
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_eq_div_add_one_of_not_dvd(n, d));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_mul_ge_self", "[villa][ceildiv]") {
+  rc::prop("a ≤ ⌈a/b⌉ × b",
+    [](uint8_t a_raw, uint8_t b_raw) {
+    size_t a = a_raw;
+    size_t b = (b_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_mul_ge_self(a, b));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_mul_sub_self_pos_of_not_dvd", "[villa][ceildiv]") {
+  rc::prop("indivisible ⟹ ⌈n/d⌉×d > n",
+    [](uint8_t n_raw, uint8_t d_raw) {
+    size_t n = n_raw + 1;
+    size_t d = (d_raw % 14) + 2;
+    RC_PRE(n % d != 0);
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_mul_sub_self_pos_of_not_dvd(n, d));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_eq_zero_iff", "[villa][ceildiv]") {
+  rc::prop("⌈a/b⌉ = 0 ⟺ a = 0",
+    [](uint8_t a_raw, uint8_t b_raw) {
+    size_t a = a_raw;
+    size_t b = (b_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_eq_zero_iff(a, b));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_mono_left", "[villa][ceildiv]") {
+  rc::prop("ceilDiv monotone in numerator",
+    [](uint8_t a_raw, uint8_t a_prime_raw, uint8_t b_raw) {
+    size_t a = a_raw;
+    size_t a_prime = a_prime_raw;
+    RC_PRE(a <= a_prime);
+    size_t b = (b_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_mono_left(a, a_prime, b));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_antitone_right", "[villa][ceildiv]") {
+  rc::prop("ceilDiv antitone in denominator",
+    [](uint8_t a_raw, uint8_t b_raw, uint8_t b_prime_raw) {
+    size_t a = a_raw;
+    size_t b = (b_raw % 15) + 1;
+    size_t b_prime = (b_prime_raw % 15) + 1;
+    RC_PRE(b <= b_prime);
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_antitone_right(a, b, b_prime));
+  });
+}
+
+TEST_CASE("Villa Straylight: ceilDiv_mul_sub_self_eq_zero_iff (no-holes)", "[villa][ceildiv]") {
+  rc::prop("no holes ⟺ divisibility",
+    [](uint8_t n_raw, uint8_t d_raw) {
+    size_t n = n_raw;
+    size_t d = (d_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_ceilDiv_mul_sub_self_eq_zero_iff(n, d));
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// §3: FTTC - The Fundamental Theorem of TMA Correctness
+// ─────────────────────────────────────────────────────────────────────────────
+
+TEST_CASE("Villa Straylight: FTTC", "[villa][fttc]") {
+  rc::prop("violated ⟺ ¬achievable",
+    [](uint8_t e_raw, uint8_t B_raw, uint8_t S_raw) {
+    size_t e = (e_raw % 15) + 1;
+    size_t B = (B_raw % 31) + 1;
+    size_t S = (S_raw % 63) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_fttc(e, B, S));
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// §4: Integer Division Theorems (from VillaStraylight §4)
+// ─────────────────────────────────────────────────────────────────────────────
+
+TEST_CASE("Villa Straylight: thm_2_5 (small numbers)", "[villa][intdiv]") {
+  rc::prop("r < a ⟹ r%a = r, r/a = 0",
+    [](uint8_t r_raw, uint8_t a_raw) {
+    size_t a = (a_raw % 15) + 1;
+    size_t r = r_raw % a;
+    RC_ASSERT(mdspan_cute::properties::prop_thm_2_5(r, a));
+  });
+}
+
+TEST_CASE("Villa Straylight: thm_2_7_1 (add multiple)", "[villa][intdiv]") {
+  rc::prop("a%c=0 ⟹ (a+b)%c = b%c",
+    [](uint8_t k_raw, uint8_t b_raw, uint8_t c_raw) {
+    size_t c = (c_raw % 15) + 1;
+    size_t a = c * (k_raw % 16);
+    size_t b = b_raw;
+    RC_ASSERT(mdspan_cute::properties::prop_thm_2_7_1(a, b, c));
+  });
+}
+
+TEST_CASE("Villa Straylight: thm_2_7_2 (nested mod)", "[villa][intdiv]") {
+  rc::prop("a%(b×c)%b = a%b",
+    [](uint8_t a_raw, uint8_t b_raw, uint8_t c_raw) {
+    size_t a = a_raw;
+    size_t b = (b_raw % 15) + 1;
+    size_t c = (c_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_thm_2_7_2(a, b, c));
+  });
+}
+
+TEST_CASE("Villa Straylight: thm_2_10 (div distributes)", "[villa][intdiv]") {
+  rc::prop("c|b ⟹ a×(b/c) = (a×b)/c",
+    [](uint8_t a_raw, uint8_t k_raw, uint8_t c_raw) {
+    size_t c = (c_raw % 15) + 1;
+    size_t k = (k_raw % 15) + 1;
+    size_t b = c * k;
+    size_t a = a_raw;
+    RC_ASSERT(mdspan_cute::properties::prop_thm_2_10(a, b, c));
+  });
+}
+
+TEST_CASE("Villa Straylight: thm_2_11 (div associates)", "[villa][intdiv]") {
+  rc::prop("a/(b×c) = a/b/c",
+    [](uint8_t a_raw, uint8_t b_raw, uint8_t c_raw) {
+    size_t a = a_raw;
+    size_t b = (b_raw % 15) + 1;
+    size_t c = (c_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_thm_2_11(a, b, c));
+  });
+}
+
+TEST_CASE("Villa Straylight: thm_2_12 (mixed-radix decomposition)", "[villa][intdiv]") {
+  rc::prop("a%(b×c) = a%b + (a/b%c)×b",
+    [](uint8_t a_raw, uint8_t b_raw, uint8_t c_raw) {
+    size_t a = a_raw;
+    size_t b = (b_raw % 15) + 1;
+    size_t c = (c_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_thm_2_12(a, b, c));
+  });
+}
+
+TEST_CASE("Villa Straylight: thm_2_15_1 (extract middle digit)", "[villa][intdiv]") {
+  rc::prop("a/b%c = a%(b×c)/b",
+    [](uint8_t a_raw, uint8_t b_raw, uint8_t c_raw) {
+    size_t a = a_raw;
+    size_t b = (b_raw % 15) + 1;
+    size_t c = (c_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_thm_2_15_1(a, b, c));
+  });
+}
+
+TEST_CASE("Villa Straylight: thm_2_16 (bound theorem)", "[villa][intdiv]") {
+  rc::prop("i/d < D ⟺ i < D×d",
+    [](uint8_t i_raw, uint8_t D_raw, uint8_t d_raw) {
+    size_t i = i_raw;
+    size_t D = (D_raw % 31) + 1;
+    size_t d = (d_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_thm_2_16(i, D, d));
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Merge-Split and Split-Split (from VillaStraylight)
+// ─────────────────────────────────────────────────────────────────────────────
+
+TEST_CASE("Villa Straylight: merge_split_identity", "[villa][split]") {
+  rc::prop("merge ∘ split = id ⟺ divisibility",
+    [](uint8_t extent_raw, uint8_t factor_raw) {
+    size_t extent = (extent_raw % 127) + 1;
+    size_t factor = (factor_raw % 15) + 1;
+    RC_ASSERT(mdspan_cute::properties::prop_merge_split_identity(extent, factor));
+  });
+}
+
+TEST_CASE("Villa Straylight: split_split_extent", "[villa][split]") {
+  rc::prop("⌈⌈i/n⌉/m⌉ = ⌈i/(m×n)⌉",
+    [](uint8_t m_raw, uint8_t n_raw, uint8_t i_raw) {
+    size_t m = (m_raw % 15) + 1;
+    size_t n = (n_raw % 15) + 1;
+    size_t i = i_raw;
+    RC_ASSERT(mdspan_cute::properties::prop_split_split_extent(m, n, i));
+  });
+}
+
+TEST_CASE("Villa Straylight: split_split_outer", "[villa][split]") {
+  rc::prop("i/n/m = i/(m×n)",
+    [](uint8_t m_raw, uint8_t n_raw, uint8_t i_raw) {
+    size_t m = (m_raw % 15) + 1;
+    size_t n = (n_raw % 15) + 1;
+    size_t i = i_raw;
+    RC_ASSERT(mdspan_cute::properties::prop_split_split_outer(m, n, i));
+  });
+}
+
+TEST_CASE("Villa Straylight: split_split_inner_outer", "[villa][split]") {
+  rc::prop("i/n%m = i%(m×n)/n",
+    [](uint8_t m_raw, uint8_t n_raw, uint8_t i_raw) {
+    size_t m = (m_raw % 15) + 1;
+    size_t n = (n_raw % 15) + 1;
+    size_t i = i_raw;
+    RC_ASSERT(mdspan_cute::properties::prop_split_split_inner_outer(m, n, i));
+  });
+}
+
+TEST_CASE("Villa Straylight: split_split_inner_inner", "[villa][split]") {
+  rc::prop("i%n = i%(m×n)%n",
+    [](uint8_t m_raw, uint8_t n_raw, uint8_t i_raw) {
+    size_t m = (m_raw % 15) + 1;
+    size_t n = (n_raw % 15) + 1;
+    size_t i = i_raw;
+    RC_ASSERT(mdspan_cute::properties::prop_split_split_inner_inner(m, n, i));
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Predication Theorems
+// ─────────────────────────────────────────────────────────────────────────────
+
+TEST_CASE("Villa Straylight: predication_thm_2", "[villa][predicate]") {
+  rc::prop("I0 in boundary ⟺ I2 in boundary",
+    [](uint8_t i2_raw, uint8_t N0_raw, uint8_t N1_raw) {
+    size_t N0 = (N0_raw % 15) + 1;
+    size_t N1 = (N1_raw % 15) + 1;
+    size_t i2 = i2_raw % (N0 * N1 + 5);
+    RC_ASSERT(mdspan_cute::properties::prop_predication_thm_2(i2, N0, N1));
+  });
 }

@@ -28,17 +28,8 @@
 
 namespace mdspan_cute {
 
-// Import mdspan types from experimental namespace
-namespace stdex = std::experimental;
-using stdex::extents;
-using stdex::mdspan;
-using stdex::layout_left;
-using stdex::layout_right;
-using stdex::layout_stride;
-
-// These are in std, not std::experimental
-using std::dextents;
-using std::dynamic_extent;
+// Note: The mdspan reference implementation uses std::experimental namespace.
+// We use fully qualified names throughout per weyl-std C++ guidelines.
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Concepts and helpers for cute/mdspan interop
@@ -81,7 +72,7 @@ inline constexpr bool cute_extent_is_static_v<cute::Int<N>> = true;
 // Helper to get extent value: static for cute::Int<N>, dynamic for integral types
 // Use std::integral_constant to force immediate evaluation in template contexts
 template <typename T, typename = void>
-struct cute_extent_value_or_dynamic : std::integral_constant<std::size_t, std::dynamic_extent> {};
+struct cute_extent_value_or_dynamic : std::integral_constant<std::size_t, std::experimental::dynamic_extent> {};
 
 template <typename T>
 struct cute_extent_value_or_dynamic<T, std::enable_if_t<cute_extent_is_static_v<std::remove_cvref_t<T>>>>
@@ -187,20 +178,20 @@ struct cute_to_extents;
 template <typename IndexType, typename T>
   requires std::is_integral_v<T>
 struct cute_to_extents<IndexType, T> {
-  using type = std::extents<IndexType, std::dynamic_extent>;
+  using type = std::experimental::extents<IndexType, std::experimental::dynamic_extent>;
 };
 
 // Single static dimension
 template <typename IndexType, int N>
 struct cute_to_extents<IndexType, cute::Int<N>> {
   using type =
-      std::extents<IndexType, cute_static_extent_value<cute::Int<N>>::value>;
+      std::experimental::extents<IndexType, cute_static_extent_value<cute::Int<N>>::value>;
 };
 
 // Helper to build extent list
 template <typename IndexType, std::size_t... Vals>
 struct make_extents_helper {
-  using type = std::extents<IndexType, Vals...>;
+  using type = std::experimental::extents<IndexType, Vals...>;
 };
 
 // Tuple of dimensions - preserve static where possible using the safe trait
@@ -220,7 +211,7 @@ template <std::size_t I, class Extents, class Shape>
 constexpr void fill_dyn_at(
     std::array<typename Extents::index_type, Extents::rank_dynamic()> &dst,
     std::size_t &di, Shape const &shape) {
-  if constexpr (Extents::static_extent(I) == std::dynamic_extent) {
+  if constexpr (Extents::static_extent(I) == std::experimental::dynamic_extent) {
     const auto v = to_size_t(cute_extent_at<I, Shape>::get(shape));
     dst[di++] = static_cast<typename Extents::index_type>(v);
   }
@@ -336,7 +327,7 @@ template <cute_layout CuteLayout> struct layout_cute {
       auto const shape_flat = detail::flatten_shape(cute::shape(cute_layout_));
       auto check_dyn = [this, &shape_flat]<std::size_t... Is>(
                            std::index_sequence<Is...>) {
-        ((extents_type::static_extent(Is) == std::dynamic_extent
+        ((extents_type::static_extent(Is) == std::experimental::dynamic_extent
               ? (void)assert(
                     extents_.extent(Is) ==
                     detail::to_size_t(
@@ -509,7 +500,7 @@ as_mdspan(cute::Tensor<Engine, Layout> const &tensor) {
   auto const shape_flat = detail::flatten_shape(shape_raw);
   extents_type exts = detail::make_extents_from_shape<extents_type>(shape_flat);
 
-  return std::mdspan<element_type, extents_type, layout_policy>(
+  return std::experimental::mdspan<element_type, extents_type, layout_policy>(
       tensor.data(),
       typename layout_policy::template mapping<extents_type>(exts, cl));
 }
@@ -530,7 +521,7 @@ template <typename Engine, typename Layout>
   auto const shape_flat = detail::flatten_shape(shape_raw);
   extents_type exts = detail::make_extents_from_shape<extents_type>(shape_flat);
 
-  return std::mdspan<element_type, extents_type, layout_policy>(
+  return std::experimental::mdspan<element_type, extents_type, layout_policy>(
       tensor.data(),
       typename layout_policy::template mapping<extents_type>(exts, cl));
 }
@@ -546,7 +537,7 @@ template <typename T, cute_layout CuteLayout>
   auto const shape_flat = detail::flatten_shape(shape_raw);
   extents_type exts = detail::make_extents_from_shape<extents_type>(shape_flat);
 
-  return std::mdspan<T, extents_type, layout_policy>(
+  return std::experimental::mdspan<T, extents_type, layout_policy>(
       ptr,
       typename layout_policy::template mapping<extents_type>(exts, layout));
 }
@@ -579,7 +570,7 @@ template <typename SwizzleType, typename Shape>
 // ═══════════════════════════════════════════════════════════════════════════════
 
 template <typename T, cute_static_layout CuteLayout>
-using cute_mdspan = std::mdspan<
+using cute_mdspan = std::experimental::mdspan<
     T,
     detail::cute_to_extents_t<
         std::size_t, detail::shape_flatten_t<cute_shape_t<CuteLayout>>>,
@@ -587,6 +578,6 @@ using cute_mdspan = std::mdspan<
 
 template <typename T, std::size_t Rank, cute_layout CuteLayout>
 using cute_dmdspan =
-    std::mdspan<T, std::dextents<std::size_t, Rank>, layout_cute<CuteLayout>>;
+    std::experimental::mdspan<T, std::experimental::dextents<std::size_t, Rank>, layout_cute<CuteLayout>>;
 
 } // namespace mdspan_cute

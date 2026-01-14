@@ -1,4 +1,7 @@
-# Building razorgirl
+# Building the Lean Proofs
+
+For a comprehensive explanation of how the proofs work, how they connect to C++,
+and the theorem reference, see **[PROOFS.md](PROOFS.md)**.
 
 ## Quick Start
 

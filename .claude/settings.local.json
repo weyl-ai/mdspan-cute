@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nix flake check:*)",
+      "Bash(git add:*)",
+      "Bash(nix fmt:*)",
+      "Bash(chmod:*)",
+      "Bash(nix develop:*)",
+      "Bash(python3:*)",
+      "Bash(cat:*)",
+      "Bash(cmake --build:*)",
+      "Bash(ls:*)",
+      "Bash(env)",
+      "Bash(echo:*)",
+      "Bash(pkg-config:*)",
+      "Bash(CUTLASS_DIR=/nix/store/i37w1vif9mc5a5skxl3h3349w4245sjg-cutlass-4.3.3 cmake:*)",
+      "Bash(nix search:*)",
+      "Bash(exit)",
+      "Bash(grep:*)",
+      "Bash(./layout_cute_tests)",
+      "Bash(make property_tests:*)",
+      "Bash(lake build:*)",
+      "Bash(git checkout:*)",
+      "Bash(done)",
+      "Bash(git rm:*)",
+      "Bash(1)",
+      "Bash(git mv:*)",
+      "Bash(CUTLASS_DIR=/nix/store/i37w1vif9mc5a5skxl3h3349w4245sjg-cutlass-4.3.3 CUDA_HOME=/nix/store/rd6y98531ngnslcv6zpdxpgg0ga3w81z-cuda_cudart-12.8.90-dev cmake:*)",
+      "Bash(CUTLASS_DIR=/nix/store/i37w1vif9mc5a5skxl3h3349w4245sjg-cutlass-4.3.3 CUDA_HOME=/nix/store/rpns4i5ivs8np3vqyxsh30q70s7fzmvn-cuda-merged-12.8 cmake:*)",
+      "Bash(./build/swizzled_tile:*)",
+      "Bash(nix flake:*)"
+    ]
+  }
+}
