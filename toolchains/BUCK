@@ -1,97 +1,52 @@
-load("@nix//flake.bzl", "flake")
-load("@nix//toolchains:cxx.bzl", "nix_cxx_toolchain")
-load("@nix//toolchains:python.bzl", "nix_python_bootstrap_toolchain")
-load("@prelude//toolchains:genrule.bzl", "system_genrule_toolchain")
+# Toolchains for mdspan-cute
+#
+# All tools come from Nix devshell.
+# Paths are read from .buckconfig.local or use PATH lookup.
+
+load(":cxx.bzl", "llvm_toolchain")
 load(":test_toolchain.bzl", "test_toolchain", "remote_test_execution_toolchain")
+load("@prelude//toolchains:genrule.bzl", "system_genrule_toolchain")
+load("@prelude//toolchains:python.bzl", "system_python_bootstrap_toolchain")
 
-# Pull C++ toolchain from inner flake (wrapped with NIX_CFLAGS_COMPILE)
-# This bakes in include paths for catch2, rapidcheck, cutlass, mdspan, cuda
-flake.package(
-    name = "nix_cc",
-    package = "cxx",
-    path = "root//buck2-toolchains:flake",
-    binary = "c++",
-    binaries = [
-        "cc",
-        "c++",
-        "ar",
-        "nm",
-        "objcopy",
-        "ranlib",
-        "strip",
-    ],
-    visibility = ["PUBLIC"],
-)
+# ════════════════════════════════════════════════════════════════════════════════
+# C++ (LLVM from Nix)
+# ════════════════════════════════════════════════════════════════════════════════
 
-# Pull Catch2 from inner flake
-flake.package(
-    name = "catch2-pkg",
-    package = "catch2",
-    path = "root//buck2-toolchains:flake",
-    visibility = ["PUBLIC"],
-)
-
-# Pull RapidCheck from inner flake
-flake.package(
-    name = "rapidcheck-pkg",
-    package = "rapidcheck",
-    path = "root//buck2-toolchains:flake",
-    visibility = ["PUBLIC"],
-)
-
-# Pull Python from inner flake
-flake.package(
-    name = "python",
-    binary = "python3",
-    package = "python3",
-    path = "root//buck2-toolchains:flake",
-    visibility = ["PUBLIC"],
-)
-
-# Pull CUTLASS from inner flake
-flake.package(
-    name = "cutlass-pkg",
-    package = "cutlass",
-    path = "root//buck2-toolchains:flake",
-    visibility = ["PUBLIC"],
-)
-
-# Pull mdspan from inner flake
-flake.package(
-    name = "mdspan-pkg",
-    package = "mdspan",
-    path = "root//buck2-toolchains:flake",
-    visibility = ["PUBLIC"],
-)
-
-# Pull CUDA SDK from inner flake
-flake.package(
-    name = "cuda-sdk",
-    package = "cuda-sdk",
-    path = "root//buck2-toolchains:flake",
-    visibility = ["PUBLIC"],
-)
-
-# C++ toolchain using Nix-provided LLVM with wrapped environment
-nix_cxx_toolchain(
+llvm_toolchain(
     name = "cxx",
-    nix_cc = ":nix_cc",
-    cxx_flags = ["-std=c++23"],
+    c_flags = [
+        "-O2",
+        "-g",
+        "-std=c23",
+        "-Wall",
+        "-Wextra",
+    ],
+    cxx_flags = [
+        "-O2",
+        "-g",
+        "-std=c++23",
+        "-Wall",
+        "-Wextra",
+    ],
+    link_flags = [],
+    link_style = "static",
     visibility = ["PUBLIC"],
 )
+
+# ════════════════════════════════════════════════════════════════════════════════
+# Supporting toolchains
+# ════════════════════════════════════════════════════════════════════════════════
 
 system_genrule_toolchain(
     name = "genrule",
     visibility = ["PUBLIC"],
 )
 
-nix_python_bootstrap_toolchain(
+system_python_bootstrap_toolchain(
     name = "python_bootstrap",
-    python = ":python",
     visibility = ["PUBLIC"],
 )
 
-# Test execution toolchains
 test_toolchain(
     name = "test",
     visibility = ["PUBLIC"],

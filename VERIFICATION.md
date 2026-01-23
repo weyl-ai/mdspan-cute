@@ -8,7 +8,7 @@ All theorems cite nvfuser documentation (BSD-3-Clause, NVIDIA) and original work
 
 ## Source Documents
 
-Archived in `proof/doc/`:
+Archived in `src/lean4-proof/doc/`:
 
 ```
 doc/math/
@@ -25,7 +25,7 @@ doc/reading/
 
 ## Lean 4 Proofs
 
-**Status: 21 theorems, 0 `sorry`, fully proven ✓**
+**Status: 26 theorems, 0 `sorry`, fully proven ✓**
 
 ### VillaStraylight.lean - Complete Formalization
 
@@ -38,7 +38,7 @@ All proofs verified with Lean 4.15.0 + Mathlib 4.15.0.
 | `ceilDiv_pos` | 492-496 | Ceiling div is positive |
 | `ceilDiv_mul_ge` | 523-537 | a ≤ ⌈a/b⌉ × b (Galois lower bound) |
 | `ceilDiv_le` | 544-560 | ⌈a/b⌉ ≤ c ⟺ a ≤ c × b (Galois connection) |
-| `ceilDiv_of_dvd` | 640-660 | ⌈a/b⌉ = a/b when b \| a |
+| `ceilDiv_of_dvd` | 640-660 | ⌈a/b⌉ = a/b when b | a |
 | `ceilDiv_eq_div_add_one_of_not_dvd` | 671-695 | ⌈a/b⌉ = a/b + 1 when b ∤ a |
 | `ceilDiv_monotone_num` | 719-724 | Monotonic in numerator |
 
@@ -48,7 +48,7 @@ All proofs verified with Lean 4.15.0 + Mathlib 4.15.0.
 |---------|--------|----------------|
 | `thm_2_5` | integer-division.md 2.5 | r % a = r when r < a |
 | `thm_2_7_1` | integer-division.md 2.7 | (a + b) % c = b % c when a % c = 0 |
-| `thm_2_10` | integer-division.md 2.10 | a × (b/c) = (a×b)/c when c \| b |
+| `thm_2_10` | integer-division.md 2.10 | a × (b/c) = (a×b)/c when c | b |
 | `thm_2_11` | integer-division.md 2.11 | a/(b×c) = (a/b)/c |
 
 #### §3. Mixed-Radix Decomposition (3 theorems)
@@ -64,8 +64,8 @@ All proofs verified with Lean 4.15.0 + Mathlib 4.15.0.
 | Theorem | Source | What it proves |
 |---------|--------|----------------|
 | `thm_2_16` | integer-division.md 2.16 | i/d < D ⟺ i < D×d (THE bound theorem) |
-| `predication_thm_1` | divisibility-of-split.md Thm 4.12 | Split: if i0<N0 ∧ i2<N2 then i1<⌈N0/N2⌉ |
-| `predication_thm_2` | divisibility-of-split.md Thm 4.13 | Merge: i0<N0 ⟺ i2<N2 |
+| `predication_thm_1` | divisibility-of-split.md Thm 4.12 | Split: if i0\<N0 ∧ i2\<N2 then i1\<⌈N0/N2⌉ |
+| `predication_thm_2` | divisibility-of-split.md Thm 4.13 | Merge: i0\<N0 ⟺ i2\<N2 |
 
 #### §5. Split-Merge Algebra (3 theorems)
 
@@ -91,13 +91,13 @@ All proofs verified with Lean 4.15.0 + Mathlib 4.15.0.
 
 ## Property Tests
 
-### tests/property_tests.cpp - RapidCheck
+### src/mdspan-cute/tests/property_tests.cpp - RapidCheck
 
 #### Integer Division Theorems
 
 | Test | Citation | Coverage |
 |------|----------|----------|
-| `nvfuser Theorem 2.10` | integer-division.md | Random (a,b,c) where c\|b |
+| `nvfuser Theorem 2.10` | integer-division.md | Random (a,b,c) where c|b |
 | `nvfuser Theorem 2.11` | integer-division.md | Random (a,b,c) |
 | `nvfuser Theorem 2.12` | integer-division.md | Random (a,b,c) |
 | `nvfuser Theorem 2.16` | integer-division.md | Random (i,D,d) |
@@ -124,7 +124,7 @@ All proofs verified with Lean 4.15.0 + Mathlib 4.15.0.
 | `indivisible split creates holes` | divisibility-of-split.md | Split(I{6}, 4) creates 2 holes |
 | `divisible split no holes` | divisibility-of-split.md | Split(I{6}, 2) creates 0 holes |
 
-### tests/test_layout_cute.cpp - mdspan Bridge Tests
+### src/mdspan-cute/tests/test_layout_cute.cpp - mdspan Bridge Tests
 
 | Test | What it verifies |
 |------|------------------|
@@ -135,7 +135,7 @@ All proofs verified with Lean 4.15.0 + Mathlib 4.15.0.
 
 ## Integration Tests
 
-### examples/swizzled_tile.cpp
+### src/mdspan-cute/examples/swizzled_tile.cpp
 
 **The Polyhedral Wizards at Play**: Demonstrates that two decades of work becomes one line of code:
 
@@ -144,6 +144,7 @@ tile[row, col] = value;  // swizzled, composed, zero-cost
 ```
 
 Verifies:
+
 - C++23 bracket syntax with CuTe swizzled layouts
 - Bank-conflict-free shared memory access with `Swizzle<3,3,3>`
 - Zero-overhead abstraction (compiles to identical assembly)
@@ -173,12 +174,13 @@ Verifies:
 
 ```bash
 nix develop .#lean
-cd proof
+cd src/lean4-proof
 lake exe cache get  # Download Mathlib precompiled binaries
-lake build           # Verify all 21 theorems
+lake build          # Verify all 26 theorems
 ```
 
 **Expected output:**
+
 ```
 ✔ [2522/2523] Built VillaStraylight
 Build completed successfully.
@@ -188,40 +190,29 @@ Build completed successfully.
 
 ```bash
 nix develop
-cmake -B build -DCMAKE_CXX_COMPILER=clang++
-cmake --build build
-./build/property_tests
+buck2 test //src/mdspan-cute:property_tests
 ```
 
 **Run specific test categories:**
 
 ```bash
-./build/property_tests "[fttc]"           # FTTC tests
-./build/property_tests "[nvfuser]"        # nvfuser theorem tests
-./build/property_tests "[correctness]"    # Correctness model tests
+buck2 test //src/mdspan-cute:property_tests -- "[fttc]"
+buck2 test //src/mdspan-cute:property_tests -- "[nvfuser]"
+buck2 test //src/mdspan-cute:property_tests -- "[correctness]"
 ```
 
-### Integration Test
+### All Tests
 
 ```bash
-./build/swizzled_tile
+buck2 test //...
 ```
 
 **Expected output:**
+
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  The Polyhedral Wizards at Play
-  mdspan + cute: two decades of work, one line of code
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Sample values from swizzled tile:
-  tile[0, 0]   = 0
-  tile[16, 16] = 1616
-  ...
-
-Swizzle pattern (logical → physical offset):
-  row 0: [0→0:b0] [1→1:b1] ...
-  row 2: [64→72:b8] [65→73:b9] ...  // XOR swizzle prevents bank conflicts
+✓ Pass: root//src/mdspan-cute:layout_cute_tests
+✓ Pass: root//src/mdspan-cute:property_tests
+Tests finished: Pass 2. Fail 0.
 ```
 
 ## The Value Proposition
@@ -229,7 +220,7 @@ Swizzle pattern (logical → physical offset):
 | Bug Pattern | Runtime Behavior | With Villa Straylight | Source |
 |-------------|------------------|----------------------|--------|
 | Indivisible split (128×48) | SIGSEGV or corruption | Type error at compile time | divisibility-of-split.md |
-| FTTC violation (e∤B, e<B<S) | Garbage in tensor cores | Type error at compile time | tma-modeling-in-depth.md |
+| FTTC violation (e∤B, e\<B\<S) | Garbage in tensor cores | Type error at compile time | tma-modeling-in-depth.md |
 | Wrong coalescence direction | Scrambled data | Type error at compile time | Lei Mao |
 | Merge-split without divisibility | Wrong iteration order | Type error at compile time | Theorem 2.1 |
 | Missing predicate after split | Out-of-bounds access | Type error at compile time | Theorem 4.12 |
@@ -248,6 +239,7 @@ Swizzle pattern (logical → physical offset):
 - ...and 18 more
 
 Each visualization is a 1920×1080 resolution-independent SVG suitable for:
+
 - Desktop wallpapers
 - Documentation figures
 - Conference slides

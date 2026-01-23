@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "buck2-prelude": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768860970,
+        "narHash": "sha256-iUDMzVDRMBbH+gkJWEdcpFF3v0DHTY35+C6+f/brfPE=",
+        "owner": "weyl-ai",
+        "repo": "straylight-buck2-prelude",
+        "rev": "b08dbec12f93a14c8ffc87d0bb77670ad3a10df6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "weyl-ai",
+        "ref": "dev",
+        "repo": "straylight-buck2-prelude",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -101,6 +118,7 @@
     },
     "root": {
       "inputs": {
+        "buck2-prelude": "buck2-prelude",
         "flake-parts": [
           "weyl-std",
           "flake-parts"

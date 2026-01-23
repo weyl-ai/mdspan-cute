@@ -1,53 +1,41 @@
-# Third party dependencies from Nix (via toolchains flake.package)
+# Third party dependencies
+#
+# Headers and libraries come from Nix devshell (NIX_CFLAGS_COMPILE, NIX_LDFLAGS).
+# These cxx_library rules just provide the linker flags.
 
-# Catch2 v3
+# Catch2 v3 testing framework
 cxx_library(
     name = "catch2",
-    exported_headers = {},
-    exported_preprocessor_flags = [],
     exported_linker_flags = [
         "-lCatch2Main",
         "-lCatch2",
     ],
-    deps = ["toolchains//:catch2-pkg"],
     visibility = ["PUBLIC"],
 )
 
 # RapidCheck property-based testing
 cxx_library(
     name = "rapidcheck",
-    exported_headers = {},
-    exported_preprocessor_flags = [],
     exported_linker_flags = [
         "-lrapidcheck",
     ],
-    deps = ["toolchains//:rapidcheck-pkg"],
     visibility = ["PUBLIC"],
 )
 
-# CUTLASS/cute headers
+# CUTLASS/cute headers (header-only)
 cxx_library(
     name = "cutlass",
-    exported_headers = {},
-    exported_preprocessor_flags = [],
-    deps = ["toolchains//:cutlass-pkg"],
     visibility = ["PUBLIC"],
 )
 
-# mdspan reference implementation
+# mdspan reference implementation (header-only)
 cxx_library(
     name = "mdspan",
-    exported_headers = {},
-    exported_preprocessor_flags = [],
-    deps = ["toolchains//:mdspan-pkg"],
     visibility = ["PUBLIC"],
 )
 
-# CUDA SDK (cudart, cccl)
+# CUDA SDK (cudart, cccl) - header-only for now
 cxx_library(
     name = "cuda",
-    exported_headers = {},
-    exported_preprocessor_flags = [],
-    deps = ["toolchains//:cuda-sdk"],
     visibility = ["PUBLIC"],
 )

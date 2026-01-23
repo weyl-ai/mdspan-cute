@@ -1,0 +1,44 @@
+# mdspan-cute: Bridge between C++23 std::mdspan and CUTLASS cute layouts
+
+cxx_library(
+    name = "mdspan-cute",
+    exported_headers = glob(["include/**/*.h"]),
+    header_namespace = "",
+    visibility = ["PUBLIC"],
+)
+
+cxx_test(
+    name = "layout_cute_tests",
+    srcs = ["tests/test_layout_cute.cpp"],
+    deps = [
+        ":mdspan-cute",
+        "//third_party:catch2",
+        "//third_party:rapidcheck",
+        "//third_party:cutlass",
+        "//third_party:mdspan",
+    ],
+)
+
+cxx_test(
+    name = "property_tests",
+    srcs = ["tests/property_tests.cpp"],
+    deps = [
+        ":mdspan-cute",
+        "//third_party:catch2",
+        "//third_party:rapidcheck",
+        "//third_party:cutlass",
+        "//third_party:mdspan",
+    ],
+)
+
+# Examples
+
+cxx_binary(
+    name = "swizzled_tile",
+    srcs = ["examples/swizzled_tile.cpp"],
+    deps = [
+        ":mdspan-cute",
+        "//third_party:cutlass",
+        "//third_party:mdspan",
+    ],
+)

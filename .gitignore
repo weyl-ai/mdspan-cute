@@ -3,6 +3,14 @@ result
 result-*
 .direnv/
 
+# Buck2
+prelude
+buck-out/
+.buckconfig.local
+
+# Lake (Lean build)
+src/lean4-proof/.lake/
+
 # Build
 build/
 cmake-build-*/

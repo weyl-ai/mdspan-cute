@@ -2,7 +2,6 @@
 root = .
 prelude = prelude
 toolchains = toolchains
-nix = nix
 none = none
 
 [cell_aliases]
@@ -12,14 +11,6 @@ fbcode = none
 fbsource = none
 fbcode_macros = none
 buck = none
-
-[external_cells]
-prelude = bundled
-nix = git
-
-[external_cell_nix]
-git_origin = https://github.com/tweag/buck2.nix.git
-commit_hash = 038b031b84846101030b9d081445003e82e3be5c
 
 [parser]
 target_platform_detector_spec = target:root//...->prelude//platforms:default

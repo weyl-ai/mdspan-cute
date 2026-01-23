@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Wrapper script for leanc (Lean C compiler wrapper)
+# Delegates to leanc from PATH (set by Nix shell via elan)
+exec leanc "$@"

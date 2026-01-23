@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Wrapper script for lean compiler
+# Delegates to lean from PATH (set by Nix shell via elan)
+exec lean "$@"

@@ -27,6 +27,7 @@ ______________________________________________________________________
 **The Villa Straylight Papers**
 
 Title card featuring:
+
 - 21 theorems
 - 0 `sorry`
 - ∞ TFLOPS
@@ -56,6 +57,7 @@ ______________________________________________________________________
 **Split-Split Equivalence**
 
 Theorem 2.1 from `iterdomain.md`:
+
 ```
 Split(Split(I{M}, N₀), N₁) ≈ Split(I{M}, N₀ × N₁)
 ```
@@ -119,6 +121,7 @@ Source: `tma-modeling-in-depth.md` · Theorem 6
 Strong correctness is UNACHIEVABLE iff: `e < B < S ∧ e ∤ B`
 
 Shows:
+
 - The violation case: element splits across TMA boxes
 - The three escape hatches: `e|B`, `B≥S`, or `e≥B`
 - Type system implications: proof obligations prevent invalid schedules
@@ -148,6 +151,7 @@ Source: `divisibility-of-split.md`
 The core bug pattern: `Split(I{6}, 4)` creates 2 holes because `ceilDiv(6,4) × 4 = 8 ≠ 6`.
 
 Shows:
+
 - Original 1D array: 6 valid items
 - After split: 2×4 grid with 2 holes (indices 6, 7)
 - The fix: add predicates `if i0*4+i1 < 6`
@@ -199,6 +203,7 @@ ______________________________________________________________________
 **The Division Algorithm**
 
 For all `a, b ∈ ℕ` with `b > 0`:
+
 ```
 ∃!q, r : a = b·q + r  ∧  r < b
 ```
@@ -245,6 +250,7 @@ ______________________________________________________________________
 ## Design Language
 
 **Palette**: ono-sendai-razorgirl
+
 - Base: `#111417` (base00)
 - Highlights: `#54aeff`, `#80ccff`, `#b6e3ff` (cyan spectrum)
 - Muted: `#596775` (base03)

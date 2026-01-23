@@ -26,7 +26,7 @@ They asked: *what is the shape of a computation?*
 
 ### The CUTLASS Architects
 
-**Andrew Kerr** designed CUTLASS and the cute layout algebra—Shape, Stride, Swizzle composed together. **Duane Merrill** built CUB and the device primitives underneath. **Haicheng Wu** and the NVIDIA CUTLASS team—Pradeep Ramani, Vijay Thakkar, and others—spent years encoding kernel wisdom into composable abstractions.
+**Cris Cecka** designed CuTe and the layout algebra itself—Shape, Stride, Swizzle composed together. **Andrew Kerr** architected CUTLASS and the tensor core templates. **Haicheng Wu** and the NVIDIA CUTLASS team—Duane Merrill, Vijay Thakkar, Pradeep Ramani, and others—spent years encoding kernel wisdom into composable abstractions.
 
 They asked: *how do we map coordinates to memory, efficiently?*
 
@@ -61,14 +61,14 @@ ______________________________________________________________________
 
 ## The Proofs
 
-**21 theorems. 0 `sorry`. Fully proven.**
+**26 theorems. 0 `sorry`. Fully proven.**
 
-The `proof/` directory contains **The Villa Straylight Papers**: a Lean 4 formalization of NVIDIA's layout algebra, spanning ceiling division, mixed-radix decomposition, predication theorems, and the Fundamental Theorem of TMA Correctness.
+The `src/lean4-proof/` directory contains **The Villa Straylight Papers**: a Lean 4 formalization of NVIDIA's layout algebra, spanning ceiling division, mixed-radix decomposition, predication theorems, and the Fundamental Theorem of TMA Correctness.
 
 ```
-proof/
-├── VillaStraylight.lean    # 1466 lines, 21 theorems, complete
-├── lakefile.lean            # Lean 4.15.0 + Mathlib 4.15.0
+src/lean4-proof/
+├── VillaStraylight.lean    # 1575 lines, 26 theorems, complete
+├── lakefile.lean           # Lean 4.15.0 + Mathlib 4.15.0
 └── doc/
     ├── reading/
     │   ├── tma-modeling-in-depth.md      # The FTTC
@@ -83,28 +83,34 @@ proof/
 ### What's Proven
 
 **§1. Ceiling Division** (6 theorems):
+
 - Galois connection: `⌈a/b⌉ ≤ c ⟺ a ≤ c × b`
 - Divisibility cases: when `b | a`, ceiling = floor
 - Monotonicity properties
 
 **§2. Division Algebra** (4 theorems from nvfuser):
+
 - Theorem 2.5, 2.7, 2.10, 2.11
 - Divisible multiplication, division associativity
 
 **§3. Mixed-Radix Decomposition** (3 theorems):
+
 - Coordinate isomorphism (recompose ∘ decompose = id)
 - Theorem 2.12: `a % (b×c) = a%b + (a/b%c)×b`
 - Theorem 2.15: extracting the middle digit
 
 **§4. The Bound Theorem** (3 theorems):
+
 - **Theorem 2.16**: `i/d < D ⟺ i < D×d` (THE bound theorem)
 - **Predication Theorems 4.12-4.13**: Split and merge bound checking
 
 **§5. Split-Merge Algebra** (3 theorems):
+
 - **Theorem 2.1** (iterdomain.md): Split-split equivalence
 - Merge-split and split-merge composition
 
 **§6. Swizzle Algebra** (1 theorem):
+
 - Swizzle involution
 
 **§7. The Fundamental Theorem of TMA Correctness** (1 theorem):
@@ -143,6 +149,7 @@ ______________________________________________________________________
 ![The Polyhedral Wizards at Play](art/00-dedication.svg)
 
 **Highlights:**
+
 - `00-dedication.svg` - The Polyhedral Wizards at Play
 - `15-fttc.svg` - The Fundamental Theorem of TMA Correctness
 - `17-holes.svg` - Indivisible split creates holes
@@ -179,20 +186,19 @@ std::mdspan<float, std::extents<int, 64, 64>,
 tile[row, col] = value;  // swizzle applied transparently
 ```
 
-See `examples/swizzled_tile.cpp` for a complete example.
+See `src/mdspan-cute/examples/swizzled_tile.cpp` for a complete example.
 
 ### Build
 
 ```bash
-# Using Nix (recommended)
-nix build                     # Build library
+# Using Nix + Buck2 (recommended)
 nix develop                   # Enter dev shell
-cmake -B build && cmake --build build
-./build/swizzled_tile         # Run example
+buck2 build //...             # Build all targets
+buck2 test //...              # Run all tests
 
 # Verify proofs
 nix develop .#lean
-cd proof && lake build        # All 21 theorems compile ✓
+cd src/lean4-proof && lake exe cache get && lake build  # All 26 theorems ✓
 ```
 
 See `BUILD.md` for detailed instructions.
@@ -217,7 +223,8 @@ ______________________________________________________________________
 
 ### Header-Only
 
-Copy `include/mdspan_cute.h` to your project. Requires:
+Copy `src/mdspan-cute/include/mdspan_cute.h` to your project. Requires:
+
 - C++23 compiler (Clang 15+, GCC 13+)
 - CUTLASS 4.3+ headers
 - CUDA 12.8+ headers
@@ -229,7 +236,7 @@ ______________________________________________________________________
 | Bug Pattern | Runtime Behavior | With Villa Straylight | Source |
 |-------------|------------------|----------------------|--------|
 | Indivisible split (128×48) | SIGSEGV or corruption | Type error at compile time | divisibility-of-split.md |
-| FTTC violation (e∤B, e<B<S) | Garbage in tensor cores | Type error at compile time | tma-modeling-in-depth.md |
+| FTTC violation (e∤B, e\<B\<S) | Garbage in tensor cores | Type error at compile time | tma-modeling-in-depth.md |
 | Wrong coalescence direction | Scrambled data | Type error at compile time | Lei Mao |
 | Merge-split without divisibility | Wrong iteration order | Type error at compile time | Theorem 2.1 |
 | Missing predicate after split | Out-of-bounds access | Type error at compile time | Theorem 4.12 |
@@ -242,7 +249,7 @@ ______________________________________________________________________
 
 Complete verification in `VERIFICATION.md`:
 
-- **Lean 4 Proofs**: 21 theorems, 0 `sorry`, VillaStraylight.lean:1466
+- **Lean 4 Proofs**: 26 theorems, 0 `sorry`, VillaStraylight.lean:1575
 - **Property Tests**: RapidCheck tests for all nvfuser theorems
 - **Integration Tests**: `swizzled_tile` example with real swizzle patterns
 - **Visual Proofs**: 23 SVG visualizations with formal statement + explanation
@@ -250,13 +257,9 @@ Complete verification in `VERIFICATION.md`:
 ```bash
 # Run all verification
 nix develop
-cmake -B build && cmake --build build
+buck2 test //...              # All C++ tests
 
-./build/property_tests        # Property-based tests
-./build/layout_cute_tests     # Bridge correctness tests
-./build/swizzled_tile         # Integration test
-
-cd proof && lake build        # Formal proofs
+cd src/lean4-proof && lake build  # Formal proofs
 ```
 
 ______________________________________________________________________

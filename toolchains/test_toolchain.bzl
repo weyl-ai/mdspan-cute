@@ -1,6 +1,10 @@
 # Minimal test toolchain for cxx_test support
 load("@prelude//tests:remote_test_execution_toolchain.bzl", "RemoteTestExecutionToolchainInfo")
-load("@prelude//tests:test_toolchain.bzl", "TestToolchainInfo")
+
+# Minimal TestToolchainInfo - the prelude no longer exports this
+TestToolchainInfo = provider(fields = {
+    "sanitizer": provider_field(typing.Any, default = None),
+})
 
 def _test_toolchain_impl(ctx):
     return [
@@ -21,7 +25,6 @@ def _remote_test_execution_toolchain_impl(ctx):
         RemoteTestExecutionToolchainInfo(
             default_profile = None,
             profiles = {},
-            default_run_as_bundle = False,
         ),
         PlatformInfo(
             label = str(ctx.label.raw_target()),

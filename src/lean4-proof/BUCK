@@ -1,0 +1,15 @@
+# Villa Straylight - Lean 4 proofs for NVIDIA's layout algebra
+#
+# Build with Lake (Mathlib dependency):
+#   cd src/lean4-proof && lake exe cache get && lake build
+#
+# Buck2 lean_library target available when Mathlib is pre-built.
+
+# load("@prelude//lean:lean.bzl", "lean_library")
+#
+# lean_library(
+#     name = "villa-straylight",
+#     srcs = ["VillaStraylight.lean"],
+#     lean_flags = ["--threads=4"],
+#     visibility = ["PUBLIC"],
+# )

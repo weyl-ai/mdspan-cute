@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Wrapper script for clang that inherits NIX_CFLAGS_COMPILE
+exec clang $NIX_CFLAGS_COMPILE "$@"
