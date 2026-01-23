@@ -106,15 +106,15 @@
     
     <!-- The names -->
     <text x="0" y="100" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
-      <tspan x="0" dy="0">Andrew Kerr</tspan>
-      <tspan x="0" dy="36" fill="#596775" font-size="16">CUTLASS architect</tspan>
-      <tspan x="0" dy="24" fill="#596775" font-size="16">cute layout algebra</tspan>
+      <tspan x="0" dy="0">Cris Cecka</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">CuTe architect</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">the layout algebra itself</tspan>
     </text>
     
     <text x="0" y="200" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
-      <tspan x="0" dy="0">Duane Merrill</tspan>
-      <tspan x="0" dy="36" fill="#596775" font-size="16">CUB, device primitives</tspan>
-      <tspan x="0" dy="24" fill="#596775" font-size="16">the patterns beneath CUDA</tspan>
+      <tspan x="0" dy="0">Andrew Kerr</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">CUTLASS architect</tspan>
+      <tspan x="0" dy="24" fill="#596775" font-size="16">tensor core templates</tspan>
     </text>
     
     <text x="0" y="300" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
@@ -125,7 +125,7 @@
     
     <text x="0" y="400" class="mono" fill="#b6e3ff" font-size="22" font-weight="500">
       <tspan x="0" dy="0">NVIDIA CUTLASS Team</tspan>
-      <tspan x="0" dy="36" fill="#596775" font-size="16">Pradeep Ramani, Vijay Thakkar</tspan>
+      <tspan x="0" dy="36" fill="#596775" font-size="16">Duane Merrill, Vijay Thakkar, et al.</tspan>
       <tspan x="0" dy="24" fill="#596775" font-size="16">years of kernel wisdom</tspan>
     </text>
     

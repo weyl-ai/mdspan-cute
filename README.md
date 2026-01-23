@@ -26,7 +26,7 @@ They asked: *what is the shape of a computation?*
 
 ### The CUTLASS Architects
 
-**Andrew Kerr** designed CUTLASS and the cute layout algebra—Shape, Stride, Swizzle composed together. **Duane Merrill** built CUB and the device primitives underneath. **Haicheng Wu** and the NVIDIA CUTLASS team—Pradeep Ramani, Vijay Thakkar, and others—spent years encoding kernel wisdom into composable abstractions.
+**Cris Cecka** designed CuTe and the layout algebra itself—Shape, Stride, Swizzle composed together. **Andrew Kerr** architected CUTLASS and the tensor core templates. **Haicheng Wu** and the NVIDIA CUTLASS team—Duane Merrill, Vijay Thakkar, Pradeep Ramani, and others—spent years encoding kernel wisdom into composable abstractions.
 
 They asked: *how do we map coordinates to memory, efficiently?*
 
